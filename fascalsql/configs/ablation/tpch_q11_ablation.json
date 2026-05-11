@@ -1,0 +1,336 @@
+{
+  "query_name": "tpch_q11_stage2",
+  "columns": [
+    {
+      "table": "__scalar_sq_1",
+      "column": "sum"
+    },
+    {
+      "table": "__intermediate_agg_tpch_q11",
+      "column": "ps_partkey"
+    },
+    {
+      "table": "__intermediate_agg_tpch_q11",
+      "column": "sum"
+    }
+  ],
+  "predicates": [],
+  "odzc_lazy_loads": [
+    {
+      "phase": "aggregation_only",
+      "table": "__intermediate_agg_tpch_q11",
+      "column": "sum"
+    },
+    {
+      "phase": "aggregation_only",
+      "table": "__intermediate_agg_tpch_q11",
+      "column": "ps_partkey"
+    },
+    {
+      "phase": "aggregation_only",
+      "table": "__intermediate_agg_tpch_q11",
+      "column": "sum"
+    }
+  ],
+  "cqo": {
+    "predicates": [],
+    "join_bloom_filters": []
+  },
+  "aggregates": [],
+  "group_by_columns": [],
+  "output": {
+    "materialize": true,
+    "columns": [
+      {
+        "table": "__intermediate_agg_tpch_q11",
+        "column": "ps_partkey"
+      },
+      {
+        "table": "__intermediate_agg_tpch_q11",
+        "column": "value"
+      }
+    ]
+  },
+  "joins": [],
+  "ablation_mode": "full_combinatorial",
+  "num_combinations": 1,
+  "semijoin_controls": [],
+  "semijoin_offload_enabled": false,
+  "planner_codegen_source": "ir",
+  "generated_output_layout": "compact",
+  "sql_path": "fascalsql/query/sql/tpch/tpch_q11.sql",
+  "runtime_pipelines": [
+    {
+      "pipeline_id": 0,
+      "entry_scan": "partsupp",
+      "node_ids": [
+        1
+      ],
+      "kinds": [
+        "Scan"
+      ]
+    },
+    {
+      "pipeline_id": 1,
+      "entry_scan": "supplier",
+      "node_ids": [
+        2
+      ],
+      "kinds": [
+        "Scan"
+      ]
+    },
+    {
+      "pipeline_id": 2,
+      "entry_scan": null,
+      "node_ids": [
+        3
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 3,
+      "entry_scan": null,
+      "node_ids": [
+        4
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 4,
+      "entry_scan": "nation",
+      "node_ids": [
+        5,
+        6
+      ],
+      "kinds": [
+        "Scan",
+        "Selection"
+      ]
+    },
+    {
+      "pipeline_id": 5,
+      "entry_scan": null,
+      "node_ids": [
+        7
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 6,
+      "entry_scan": null,
+      "node_ids": [
+        8
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 7,
+      "entry_scan": null,
+      "node_ids": [
+        9
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 8,
+      "entry_scan": null,
+      "node_ids": [
+        10
+      ],
+      "kinds": [
+        "Map"
+      ]
+    },
+    {
+      "pipeline_id": 9,
+      "entry_scan": null,
+      "node_ids": [
+        11
+      ],
+      "kinds": [
+        "Aggregation"
+      ]
+    },
+    {
+      "pipeline_id": 10,
+      "entry_scan": null,
+      "node_ids": [
+        12
+      ],
+      "kinds": [
+        "SubQuery"
+      ]
+    },
+    {
+      "pipeline_id": 11,
+      "entry_scan": null,
+      "node_ids": [
+        13
+      ],
+      "kinds": [
+        "CrossJoin"
+      ]
+    },
+    {
+      "pipeline_id": 12,
+      "entry_scan": null,
+      "node_ids": [
+        14
+      ],
+      "kinds": [
+        "Map"
+      ]
+    },
+    {
+      "pipeline_id": 13,
+      "entry_scan": null,
+      "node_ids": [
+        15
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 14,
+      "entry_scan": null,
+      "node_ids": [
+        16
+      ],
+      "kinds": [
+        "Sort"
+      ]
+    },
+    {
+      "pipeline_id": 15,
+      "entry_scan": null,
+      "node_ids": [
+        17
+      ],
+      "kinds": [
+        "Materialize"
+      ]
+    }
+  ],
+  "runtime_dependencies": [
+    {
+      "from_pipeline": 0,
+      "to_pipeline": 2,
+      "via_from_op": 1,
+      "via_to_op": 3
+    },
+    {
+      "from_pipeline": 1,
+      "to_pipeline": 2,
+      "via_from_op": 2,
+      "via_to_op": 3
+    },
+    {
+      "from_pipeline": 2,
+      "to_pipeline": 3,
+      "via_from_op": 3,
+      "via_to_op": 4
+    },
+    {
+      "from_pipeline": 3,
+      "to_pipeline": 6,
+      "via_from_op": 4,
+      "via_to_op": 8
+    },
+    {
+      "from_pipeline": 4,
+      "to_pipeline": 5,
+      "via_from_op": 6,
+      "via_to_op": 7
+    },
+    {
+      "from_pipeline": 5,
+      "to_pipeline": 6,
+      "via_from_op": 7,
+      "via_to_op": 8
+    },
+    {
+      "from_pipeline": 6,
+      "to_pipeline": 7,
+      "via_from_op": 8,
+      "via_to_op": 9
+    },
+    {
+      "from_pipeline": 7,
+      "to_pipeline": 8,
+      "via_from_op": 9,
+      "via_to_op": 10
+    },
+    {
+      "from_pipeline": 8,
+      "to_pipeline": 9,
+      "via_from_op": 10,
+      "via_to_op": 11
+    },
+    {
+      "from_pipeline": 9,
+      "to_pipeline": 11,
+      "via_from_op": 11,
+      "via_to_op": 13
+    },
+    {
+      "from_pipeline": 10,
+      "to_pipeline": 11,
+      "via_from_op": 12,
+      "via_to_op": 13
+    },
+    {
+      "from_pipeline": 11,
+      "to_pipeline": 12,
+      "via_from_op": 13,
+      "via_to_op": 14
+    },
+    {
+      "from_pipeline": 12,
+      "to_pipeline": 13,
+      "via_from_op": 14,
+      "via_to_op": 15
+    },
+    {
+      "from_pipeline": 13,
+      "to_pipeline": 14,
+      "via_from_op": 15,
+      "via_to_op": 16
+    },
+    {
+      "from_pipeline": 14,
+      "to_pipeline": 15,
+      "via_from_op": 16,
+      "via_to_op": 17
+    }
+  ],
+  "join_build_probe_edges": [
+    {
+      "join_op_id": 3,
+      "join_type": "Join.INNER",
+      "build_parent_op": 1,
+      "probe_parent_op": 2,
+      "build_pipeline": 0,
+      "probe_pipeline": 1
+    },
+    {
+      "join_op_id": 8,
+      "join_type": "Join.INNER",
+      "build_parent_op": 4,
+      "probe_parent_op": 7,
+      "build_pipeline": 3,
+      "probe_pipeline": 5
+    }
+  ]
+}

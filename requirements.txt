@@ -1,0 +1,6 @@
+# FaScalSQL Python dependencies
+# Tested with Python 3.10+
+datafusion>=35.0
+pyarrow>=14.0
+numpy>=1.24
+duckdb>=0.9

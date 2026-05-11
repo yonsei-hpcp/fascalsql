@@ -1,0 +1,399 @@
+{
+    "tpch_q1": {
+        "columns": [
+            {
+                "table": "lineitem",
+                "column": "l_returnflag_enc"
+            },
+            {
+                "table": "lineitem",
+                "column": "l_linestatus_enc"
+            },
+            {
+                "type": "float_decimal",
+                "format": "%.6f"
+            },
+            {
+                "type": "float_decimal",
+                "format": "%.6f"
+            },
+            {
+                "type": "float_decimal",
+                "format": "%.4f"
+            },
+            {
+                "type": "float_decimal",
+                "format": "%.6f"
+            },
+            {
+                "type": "float_avg",
+                "format": "%.6f",
+                "count_index": 7
+            },
+            {
+                "type": "float_avg",
+                "format": "%.6f",
+                "count_index": 7
+            },
+            {
+                "type": "float_avg",
+                "format": "%.6f",
+                "count_index": 7
+            },
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "tpch_q4": {
+        "columns": [
+            {
+                "table": "orders",
+                "column": "o_orderpriority_enc"
+            },
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "tpch_q6": {
+        "columns": [
+            {
+                "type": "float_decimal",
+                "format": "%.4f"
+            }
+        ]
+    },
+  "tpch_q8": {
+    "columns": [
+      {
+        "type": "year_enc",
+        "base": 1992
+      },
+      {
+        "type": "float_decimal",
+        "format": "%.6f"
+      },
+      {
+        "type": "float_decimal",
+        "format": "%.6f"
+      }
+    ]
+  },
+    "tpch_q2": {
+        "columns": [
+            {
+                "table": "supplier",
+                "column": "s_acctbal",
+                "format": "%.6f"
+            },
+            {
+                "table": "supplier",
+                "column": "s_name"
+            },
+            {
+                "table": "nation",
+                "column": "n_name"
+            },
+            {
+                "table": "part",
+                "column": "p_partkey"
+            },
+            {
+                "table": "part",
+                "column": "p_mfgr"
+            },
+            {
+                "table": "supplier",
+                "column": "s_address"
+            },
+            {
+                "table": "supplier",
+                "column": "s_phone"
+            },
+            {
+                "table": "supplier",
+                "column": "s_comment"
+            }
+        ]
+    },
+    "tpch_q12": {
+        "columns": [
+            {
+                "table": "lineitem",
+                "column": "l_shipmode_enc"
+            },
+            {
+                "type": "int"
+            },
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "tpch_q14": {
+        "columns": [
+            {
+                "type": "float_decimal",
+                "format": "%.6f"
+            },
+            {
+                "type": "float_decimal",
+                "format": "%.6f"
+            },
+            {
+                "type": "float_decimal",
+                "format": "%.6f"
+            }
+        ],
+        "postprocess": "q14_promo_ratio"
+    },
+    "tpch_q9": {
+        "columns": [
+            {
+                "table": "nation",
+                "column": "n_name"
+            },
+            {
+                "type": "year_enc",
+                "base": 1992
+            },
+            {
+                "type": "float_decimal",
+                "format": "%.4f"
+            }
+        ]
+    },
+    "tpch_q19": {
+        "columns": [
+            {
+                "type": "float_decimal",
+                "format": "%.4f"
+            }
+        ]
+    },
+  "tpch_q11": {
+    "columns": [
+      {
+        "type": "int"
+      },
+      {
+        "type": "float_decimal",
+        "format": "%.6f"
+      }
+    ]
+  },
+    "tpch_q3": {
+        "columns": [
+            {
+                "table": "orders",
+                "column": "o_orderkey"
+            },
+            {
+                "type": "float_decimal",
+                "format": "%.4f"
+            },
+            {
+                "table": "orders",
+                "column": "o_orderdate"
+            },
+            {
+                "table": "orders",
+                "column": "o_shippriority"
+            }
+        ]
+    },
+    "tpch_q10": {
+        "columns": [
+            {
+                "table": "customer",
+                "column": "c_custkey"
+            },
+            {
+                "table": "customer",
+                "column": "c_name"
+            },
+            {
+                "type": "float_decimal",
+                "format": "%.4f"
+            },
+            {
+                "table": "customer",
+                "column": "c_acctbal"
+            },
+            {
+                "table": "nation",
+                "column": "n_name"
+            },
+            {
+                "table": "customer",
+                "column": "c_address"
+            },
+            {
+                "table": "customer",
+                "column": "c_phone"
+            },
+            {
+                "table": "customer",
+                "column": "c_comment"
+            }
+        ]
+    },
+    "tpch_q18": {
+        "columns": [
+            {
+                "table": "customer",
+                "column": "c_name"
+            },
+            {
+                "table": "orders",
+                "column": "o_custkey"
+            },
+            {
+                "table": "orders",
+                "column": "o_orderkey"
+            },
+            {
+                "table": "orders",
+                "column": "o_orderdate"
+            },
+            {
+                "table": "orders",
+                "column": "o_totalprice"
+            },
+            {
+                "type": "float_decimal",
+                "format": "%.2f"
+            }
+        ]
+    },
+    "tpch_q15": {
+        "columns": [
+            {
+                "table": "supplier",
+                "column": "s_suppkey"
+            },
+            {
+                "table": "supplier",
+                "column": "s_name"
+            },
+            {
+                "table": "supplier",
+                "column": "s_address"
+            },
+            {
+                "table": "supplier",
+                "column": "s_phone"
+            },
+            {
+                "type": "float_decimal",
+                "format": "%.6f"
+            }
+        ]
+    },
+    "tpch_q13": {
+        "columns": [
+            {
+                "type": "int"
+            },
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "tpch_q21": {
+        "columns": [
+            {
+                "table": "supplier",
+                "column": "s_name"
+            },
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "tpch_q20": {
+        "columns": [
+            {
+                "table": "supplier",
+                "column": "s_name"
+            },
+            {
+                "table": "supplier",
+                "column": "s_address"
+            }
+        ]
+    },
+    "tpch_q5": {
+        "columns": [
+            {
+                "table": "nation",
+                "column": "n_name"
+            },
+            {
+                "type": "float_decimal",
+                "format": "%.4f"
+            }
+        ]
+    },
+    "tpch_q7": {
+        "columns": [
+            {
+                "table": "nation",
+                "column": "n_name"
+            },
+            {
+                "table": "nation",
+                "column": "n_name"
+            },
+            {
+                "type": "year_enc",
+                "base": 1992
+            },
+            {
+                "type": "float_decimal",
+                "format": "%.4f"
+            }
+        ]
+    },
+    "tpch_q16": {
+        "columns": [
+            {
+                "table": "part",
+                "column": "p_brand"
+            },
+            {
+                "table": "part",
+                "column": "p_type"
+            },
+            {
+                "type": "int"
+            },
+            {
+                "type": "int"
+            }
+        ]
+    },
+  "tpch_q17": {
+    "columns": [
+      {
+        "type": "float_decimal",
+        "format": "%.4f"
+      }
+    ]
+  },
+  "tpch_q22": {
+    "columns": [
+      {
+        "type": "string"
+      },
+      {
+        "type": "int"
+      },
+      {
+        "type": "float_decimal",
+        "format": "%.2f"
+      }
+    ]
+  }
+}

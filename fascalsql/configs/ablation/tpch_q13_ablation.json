@@ -1,0 +1,132 @@
+{
+  "query_name": "tpch_q13",
+  "columns": [
+    {
+      "table": "c_orders",
+      "column": "c_count"
+    }
+  ],
+  "predicates": [],
+  "odzc_lazy_loads": [
+    {
+      "phase": "fact_group_by",
+      "table": "c_orders",
+      "column": "c_count_enc"
+    },
+    {
+      "phase": "aggregation_only",
+      "table": "c_orders",
+      "column": "c_count"
+    }
+  ],
+  "cqo": {
+    "predicates": [],
+    "join_bloom_filters": []
+  },
+  "aggregates": [
+    {
+      "type": "COUNT",
+      "semantic_type": "COUNT",
+      "column": "",
+      "alias": "custdist"
+    }
+  ],
+  "group_by_columns": [
+    {
+      "table": "c_orders",
+      "column": "c_count",
+      "range": 1001
+    }
+  ],
+  "output": {
+    "materialize": false,
+    "columns": []
+  },
+  "joins": [],
+  "ablation_mode": "full_combinatorial",
+  "num_combinations": 1,
+  "semijoin_controls": [],
+  "semijoin_offload_enabled": false,
+  "planner_codegen_source": "ir",
+  "generated_output_layout": "compact",
+  "sql_path": "fascalsql/query/sql/tpch/tpch_q13.sql",
+  "runtime_pipelines": [
+    {
+      "pipeline_id": 0,
+      "entry_scan": null,
+      "node_ids": [
+        1
+      ],
+      "kinds": [
+        "SubQuery"
+      ]
+    },
+    {
+      "pipeline_id": 1,
+      "entry_scan": null,
+      "node_ids": [
+        2
+      ],
+      "kinds": [
+        "Aggregation"
+      ]
+    },
+    {
+      "pipeline_id": 2,
+      "entry_scan": null,
+      "node_ids": [
+        3
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 3,
+      "entry_scan": null,
+      "node_ids": [
+        4
+      ],
+      "kinds": [
+        "Sort"
+      ]
+    },
+    {
+      "pipeline_id": 4,
+      "entry_scan": null,
+      "node_ids": [
+        5
+      ],
+      "kinds": [
+        "Materialize"
+      ]
+    }
+  ],
+  "runtime_dependencies": [
+    {
+      "from_pipeline": 0,
+      "to_pipeline": 1,
+      "via_from_op": 1,
+      "via_to_op": 2
+    },
+    {
+      "from_pipeline": 1,
+      "to_pipeline": 2,
+      "via_from_op": 2,
+      "via_to_op": 3
+    },
+    {
+      "from_pipeline": 2,
+      "to_pipeline": 3,
+      "via_from_op": 3,
+      "via_to_op": 4
+    },
+    {
+      "from_pipeline": 3,
+      "to_pipeline": 4,
+      "via_from_op": 4,
+      "via_to_op": 5
+    }
+  ],
+  "join_build_probe_edges": []
+}

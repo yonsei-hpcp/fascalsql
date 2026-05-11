@@ -1,0 +1,513 @@
+{
+  "query_name": "tpch_q10",
+  "columns": [
+    {
+      "table": "lineitem",
+      "column": "l_orderkey"
+    },
+    {
+      "table": "lineitem",
+      "column": "l_returnflag_enc"
+    },
+    {
+      "table": "lineitem",
+      "column": "l_extendedprice"
+    },
+    {
+      "table": "lineitem",
+      "column": "l_discount"
+    },
+    {
+      "table": "orders",
+      "column": "o_custkey"
+    },
+    {
+      "table": "customer",
+      "column": "c_nationkey"
+    },
+    {
+      "table": "customer",
+      "column": "c_custkey"
+    },
+    {
+      "table": "customer",
+      "column": "c_name"
+    },
+    {
+      "table": "customer",
+      "column": "c_acctbal"
+    },
+    {
+      "table": "nation",
+      "column": "n_name"
+    },
+    {
+      "table": "customer",
+      "column": "c_address"
+    },
+    {
+      "table": "customer",
+      "column": "c_phone"
+    },
+    {
+      "table": "customer",
+      "column": "c_comment"
+    }
+  ],
+  "predicates": [
+    {
+      "id": 0,
+      "description": "orders.o_orderdate",
+      "column": "o_orderdate",
+      "table": "orders",
+      "selectivity_estimate": 0.3,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 1,
+      "description": "orders.o_orderdate",
+      "column": "o_orderdate",
+      "table": "orders",
+      "selectivity_estimate": 0.3,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 2,
+      "description": "lineitem.l_returnflag",
+      "column": "l_returnflag_enc",
+      "table": "lineitem",
+      "selectivity_estimate": 0.1,
+      "default_run_on_cpu": true
+    }
+  ],
+  "odzc_lazy_loads": [
+    {
+      "phase": "predicate",
+      "table": "lineitem",
+      "column": "l_returnflag_enc"
+    },
+    {
+      "phase": "join_fk",
+      "table": "lineitem",
+      "column": "l_orderkey"
+    },
+    {
+      "phase": "aggregation_only",
+      "table": "lineitem",
+      "column": "l_extendedprice"
+    },
+    {
+      "phase": "aggregation_only",
+      "table": "lineitem",
+      "column": "l_discount"
+    }
+  ],
+  "cqo": {
+    "predicates": [
+      {
+        "id": 0,
+        "table": "orders",
+        "column": "o_orderdate",
+        "selectivity_estimate": 0.3,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 1,
+        "table": "orders",
+        "column": "o_orderdate",
+        "selectivity_estimate": 0.3,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 2,
+        "table": "lineitem",
+        "column": "l_returnflag_enc",
+        "selectivity_estimate": 0.1,
+        "default_run_on_cpu": true
+      }
+    ],
+    "join_bloom_filters": [
+      {
+        "join_index": 0,
+        "left_table": "lineitem",
+        "right_table": "orders",
+        "false_positive_rate": 0.05
+      },
+      {
+        "join_index": 1,
+        "left_table": "orders",
+        "right_table": "customer",
+        "false_positive_rate": 0.05
+      },
+      {
+        "join_index": 2,
+        "left_table": "customer",
+        "right_table": "nation",
+        "false_positive_rate": 0.05
+      }
+    ]
+  },
+  "aggregates": [
+    {
+      "type": "SUM",
+      "semantic_type": "SUM",
+      "column": "(l_extendedprice * (1 - l_discount))",
+      "alias": "revenue"
+    }
+  ],
+  "group_by_columns": [
+    {
+      "table": "customer",
+      "column": "c_custkey",
+      "range": 150001
+    },
+    {
+      "table": "nation",
+      "column": "n_name",
+      "range": 25
+    }
+  ],
+  "output": {
+    "materialize": false,
+    "columns": []
+  },
+  "joins": [
+    {
+      "left_table": "lineitem",
+      "right_table": "orders",
+      "left_col": "l_orderkey",
+      "right_col": "o_orderkey",
+      "type": "inner",
+      "strategy": "pk_fk_hash",
+      "left_base_table": "lineitem",
+      "right_base_table": "orders"
+    },
+    {
+      "left_table": "orders",
+      "right_table": "customer",
+      "left_col": "o_custkey",
+      "right_col": "c_custkey",
+      "type": "inner",
+      "strategy": "pk_fk_hash",
+      "left_base_table": "orders",
+      "right_base_table": "customer"
+    },
+    {
+      "left_table": "customer",
+      "right_table": "nation",
+      "left_col": "c_nationkey",
+      "right_col": "n_nationkey",
+      "type": "inner",
+      "strategy": "pk_fk_hash",
+      "left_base_table": "customer",
+      "right_base_table": "nation"
+    }
+  ],
+  "ablation_mode": "full_combinatorial",
+  "num_combinations": 8,
+  "semijoin_controls": [],
+  "semijoin_offload_enabled": false,
+  "planner_codegen_source": "ir",
+  "generated_output_layout": "compact",
+  "sql_path": "fascalsql/query/sql/tpch/tpch_q10.sql",
+  "runtime_pipelines": [
+    {
+      "pipeline_id": 0,
+      "entry_scan": "customer",
+      "node_ids": [
+        1
+      ],
+      "kinds": [
+        "Scan"
+      ]
+    },
+    {
+      "pipeline_id": 1,
+      "entry_scan": "orders",
+      "node_ids": [
+        2,
+        3
+      ],
+      "kinds": [
+        "Scan",
+        "Selection"
+      ]
+    },
+    {
+      "pipeline_id": 2,
+      "entry_scan": null,
+      "node_ids": [
+        4
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 3,
+      "entry_scan": null,
+      "node_ids": [
+        5
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 4,
+      "entry_scan": null,
+      "node_ids": [
+        6
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 5,
+      "entry_scan": "lineitem",
+      "node_ids": [
+        7,
+        8
+      ],
+      "kinds": [
+        "Scan",
+        "Selection"
+      ]
+    },
+    {
+      "pipeline_id": 6,
+      "entry_scan": null,
+      "node_ids": [
+        9
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 7,
+      "entry_scan": null,
+      "node_ids": [
+        10
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 8,
+      "entry_scan": null,
+      "node_ids": [
+        11
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 9,
+      "entry_scan": "nation",
+      "node_ids": [
+        12
+      ],
+      "kinds": [
+        "Scan"
+      ]
+    },
+    {
+      "pipeline_id": 10,
+      "entry_scan": null,
+      "node_ids": [
+        13
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 11,
+      "entry_scan": null,
+      "node_ids": [
+        14
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 12,
+      "entry_scan": null,
+      "node_ids": [
+        15
+      ],
+      "kinds": [
+        "Map"
+      ]
+    },
+    {
+      "pipeline_id": 13,
+      "entry_scan": null,
+      "node_ids": [
+        16
+      ],
+      "kinds": [
+        "Aggregation"
+      ]
+    },
+    {
+      "pipeline_id": 14,
+      "entry_scan": null,
+      "node_ids": [
+        17
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 15,
+      "entry_scan": null,
+      "node_ids": [
+        18
+      ],
+      "kinds": [
+        "Sort"
+      ]
+    },
+    {
+      "pipeline_id": 16,
+      "entry_scan": null,
+      "node_ids": [
+        19
+      ],
+      "kinds": [
+        "Materialize"
+      ]
+    }
+  ],
+  "runtime_dependencies": [
+    {
+      "from_pipeline": 0,
+      "to_pipeline": 3,
+      "via_from_op": 1,
+      "via_to_op": 5
+    },
+    {
+      "from_pipeline": 1,
+      "to_pipeline": 2,
+      "via_from_op": 3,
+      "via_to_op": 4
+    },
+    {
+      "from_pipeline": 2,
+      "to_pipeline": 3,
+      "via_from_op": 4,
+      "via_to_op": 5
+    },
+    {
+      "from_pipeline": 3,
+      "to_pipeline": 4,
+      "via_from_op": 5,
+      "via_to_op": 6
+    },
+    {
+      "from_pipeline": 4,
+      "to_pipeline": 7,
+      "via_from_op": 6,
+      "via_to_op": 10
+    },
+    {
+      "from_pipeline": 5,
+      "to_pipeline": 6,
+      "via_from_op": 8,
+      "via_to_op": 9
+    },
+    {
+      "from_pipeline": 6,
+      "to_pipeline": 7,
+      "via_from_op": 9,
+      "via_to_op": 10
+    },
+    {
+      "from_pipeline": 7,
+      "to_pipeline": 8,
+      "via_from_op": 10,
+      "via_to_op": 11
+    },
+    {
+      "from_pipeline": 8,
+      "to_pipeline": 10,
+      "via_from_op": 11,
+      "via_to_op": 13
+    },
+    {
+      "from_pipeline": 9,
+      "to_pipeline": 10,
+      "via_from_op": 12,
+      "via_to_op": 13
+    },
+    {
+      "from_pipeline": 10,
+      "to_pipeline": 11,
+      "via_from_op": 13,
+      "via_to_op": 14
+    },
+    {
+      "from_pipeline": 11,
+      "to_pipeline": 12,
+      "via_from_op": 14,
+      "via_to_op": 15
+    },
+    {
+      "from_pipeline": 12,
+      "to_pipeline": 13,
+      "via_from_op": 15,
+      "via_to_op": 16
+    },
+    {
+      "from_pipeline": 13,
+      "to_pipeline": 14,
+      "via_from_op": 16,
+      "via_to_op": 17
+    },
+    {
+      "from_pipeline": 14,
+      "to_pipeline": 15,
+      "via_from_op": 17,
+      "via_to_op": 18
+    },
+    {
+      "from_pipeline": 15,
+      "to_pipeline": 16,
+      "via_from_op": 18,
+      "via_to_op": 19
+    }
+  ],
+  "join_build_probe_edges": [
+    {
+      "join_op_id": 5,
+      "join_type": "Join.INNER",
+      "build_parent_op": 1,
+      "probe_parent_op": 4,
+      "build_pipeline": 0,
+      "probe_pipeline": 2
+    },
+    {
+      "join_op_id": 10,
+      "join_type": "Join.INNER",
+      "build_parent_op": 6,
+      "probe_parent_op": 9,
+      "build_pipeline": 4,
+      "probe_pipeline": 6
+    },
+    {
+      "join_op_id": 13,
+      "join_type": "Join.INNER",
+      "build_parent_op": 11,
+      "probe_parent_op": 12,
+      "build_pipeline": 8,
+      "probe_pipeline": 9
+    }
+  ]
+}

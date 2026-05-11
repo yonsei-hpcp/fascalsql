@@ -1,0 +1,7 @@
+[submodule "third_party/ssb-dbgen"]
+	path = third_party/ssb-dbgen
+	url = https://github.com/electrum/ssb-dbgen.git
+
+[submodule "third_party/tpch-dbgen"]
+	path = third_party/tpch-dbgen
+	url = https://github.com/electrum/tpch-dbgen.git

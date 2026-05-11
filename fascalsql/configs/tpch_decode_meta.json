@@ -1,0 +1,712 @@
+{
+  "version": 2,
+  "tables": {
+    "region": {
+      "r_regionkey": {
+        "kind": "int",
+        "reverse_map": {
+          "0": "0",
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4"
+        }
+      },
+      "r_name": {
+        "kind": "dict",
+        "reverse_map": {
+          "0": "AFRICA",
+          "1": "AMERICA",
+          "2": "ASIA",
+          "3": "EUROPE",
+          "4": "MIDDLE EAST"
+        }
+      },
+      "r_comment": {
+        "kind": "dict",
+        "reverse_map": {
+          "0": "ges. thinly even pinto beans ca",
+          "1": "hs use ironic, even requests. s",
+          "2": "lar deposits. blithely final packages cajole. regular waters are final requests. regular accounts are according to ",
+          "3": "ly final courts cajole furiously final excuse",
+          "4": "uickly special accounts cajole carefully blithely close requests. carefully final asymptotes haggle furiousl"
+        }
+      }
+    },
+    "nation": {
+      "n_nationkey": {
+        "kind": "int",
+        "reverse_map": {
+          "0": "0",
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "11": "11",
+          "12": "12",
+          "13": "13",
+          "14": "14",
+          "15": "15",
+          "16": "16",
+          "17": "17",
+          "18": "18",
+          "19": "19",
+          "20": "20",
+          "21": "21",
+          "22": "22",
+          "23": "23",
+          "24": "24"
+        }
+      },
+      "n_name": {
+        "kind": "dict",
+        "reverse_map": {
+          "0": "ALGERIA",
+          "1": "ARGENTINA",
+          "2": "BRAZIL",
+          "3": "CANADA",
+          "4": "CHINA",
+          "5": "EGYPT",
+          "6": "ETHIOPIA",
+          "7": "FRANCE",
+          "8": "GERMANY",
+          "9": "INDIA",
+          "10": "INDONESIA",
+          "11": "IRAN",
+          "12": "IRAQ",
+          "13": "JAPAN",
+          "14": "JORDAN",
+          "15": "KENYA",
+          "16": "MOROCCO",
+          "17": "MOZAMBIQUE",
+          "18": "PERU",
+          "19": "ROMANIA",
+          "20": "RUSSIA",
+          "21": "SAUDI ARABIA",
+          "22": "UNITED KINGDOM",
+          "23": "UNITED STATES",
+          "24": "VIETNAM"
+        }
+      },
+      "n_regionkey": {
+        "kind": "int",
+        "reverse_map": {
+          "0": "0",
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4"
+        }
+      },
+      "n_comment": {
+        "kind": "dict",
+        "reverse_map": {
+          "0": " haggle. carefully final deposits detect slyly agai",
+          "1": " pending excuses haggle furiously deposits. pending, express pinto beans wake fluffily past t",
+          "2": " requests against the platelets use never according to the quickly regular pint",
+          "3": " slyly express asymptotes. regular deposits haggle slyly. carefully ironic hockey players sleep blithely. carefull",
+          "4": "al foxes promise slyly according to the regular accounts. bold requests alon",
+          "5": "c dependencies. furiously express notornis sleep slyly regular accounts. ideas sleep. depos",
+          "6": "eans boost carefully special requests. accounts are. carefull",
+          "7": "eas hang ironic, silent packages. slyly regular packages are furiously over the tithes. fluffily bold",
+          "8": "efully alongside of the slyly final dependencies. ",
+          "9": "hely enticingly express accounts. even, final ",
+          "10": "ic deposits are blithely about the carefully regular pa",
+          "11": "l platelets. regular accounts x-ray: unusual, regular acco",
+          "12": "nic deposits boost atop the quickly final requests? quickly regula",
+          "13": "ously. final, express gifts cajole a",
+          "14": "platelets. blithely pending dependencies use fluffily across the even pinto beans. carefully silent accoun",
+          "15": "refully final requests. regular, ironi",
+          "16": "rns. blithely bold courts among the closely regular packages use furiously bold platelets?",
+          "17": "s. ironic, unusual asymptotes wake blithely r",
+          "18": "ss excuses cajole slyly across the packages. deposits print aroun",
+          "19": "ts. silent requests haggle. closely express packages sleep across the blithely",
+          "20": "ular asymptotes are about the furious multipliers. express dependencies nag above the ironically ironic account",
+          "21": "ven packages wake quickly. regu",
+          "22": "y above the carefully unusual theodolites. final dugouts are quickly across the furiously regular d",
+          "23": "y alongside of the pending deposits. carefully special packages are about the ironic forges. slyly special ",
+          "24": "y final packages. slow foxes cajole quickly. quickly silent platelets breach ironic accounts. unusual pinto be"
+        }
+      }
+    },
+    "part": {
+      "p_partkey": {
+        "kind": "int"
+      },
+      "p_name": {
+        "kind": "dict"
+      },
+      "p_mfgr": {
+        "kind": "prefix_hash_int",
+        "prefix": "Manufacturer#",
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "p_brand": {
+        "kind": "prefix_hash_int",
+        "prefix": "Brand#",
+        "nums": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          21,
+          22,
+          23,
+          24,
+          25,
+          31,
+          32,
+          33,
+          34,
+          35,
+          41,
+          42,
+          43,
+          44,
+          45,
+          51,
+          52,
+          53,
+          54,
+          55
+        ]
+      },
+      "p_type": {
+        "kind": "dict",
+        "reverse_map": {
+          "0": "ECONOMY ANODIZED BRASS",
+          "1": "ECONOMY ANODIZED COPPER",
+          "2": "ECONOMY ANODIZED NICKEL",
+          "3": "ECONOMY ANODIZED STEEL",
+          "4": "ECONOMY ANODIZED TIN",
+          "5": "ECONOMY BRUSHED BRASS",
+          "6": "ECONOMY BRUSHED COPPER",
+          "7": "ECONOMY BRUSHED NICKEL",
+          "8": "ECONOMY BRUSHED STEEL",
+          "9": "ECONOMY BRUSHED TIN",
+          "10": "ECONOMY BURNISHED BRASS",
+          "11": "ECONOMY BURNISHED COPPER",
+          "12": "ECONOMY BURNISHED NICKEL",
+          "13": "ECONOMY BURNISHED STEEL",
+          "14": "ECONOMY BURNISHED TIN",
+          "15": "ECONOMY PLATED BRASS",
+          "16": "ECONOMY PLATED COPPER",
+          "17": "ECONOMY PLATED NICKEL",
+          "18": "ECONOMY PLATED STEEL",
+          "19": "ECONOMY PLATED TIN",
+          "20": "ECONOMY POLISHED BRASS",
+          "21": "ECONOMY POLISHED COPPER",
+          "22": "ECONOMY POLISHED NICKEL",
+          "23": "ECONOMY POLISHED STEEL",
+          "24": "ECONOMY POLISHED TIN",
+          "25": "LARGE ANODIZED BRASS",
+          "26": "LARGE ANODIZED COPPER",
+          "27": "LARGE ANODIZED NICKEL",
+          "28": "LARGE ANODIZED STEEL",
+          "29": "LARGE ANODIZED TIN",
+          "30": "LARGE BRUSHED BRASS",
+          "31": "LARGE BRUSHED COPPER",
+          "32": "LARGE BRUSHED NICKEL",
+          "33": "LARGE BRUSHED STEEL",
+          "34": "LARGE BRUSHED TIN",
+          "35": "LARGE BURNISHED BRASS",
+          "36": "LARGE BURNISHED COPPER",
+          "37": "LARGE BURNISHED NICKEL",
+          "38": "LARGE BURNISHED STEEL",
+          "39": "LARGE BURNISHED TIN",
+          "40": "LARGE PLATED BRASS",
+          "41": "LARGE PLATED COPPER",
+          "42": "LARGE PLATED NICKEL",
+          "43": "LARGE PLATED STEEL",
+          "44": "LARGE PLATED TIN",
+          "45": "LARGE POLISHED BRASS",
+          "46": "LARGE POLISHED COPPER",
+          "47": "LARGE POLISHED NICKEL",
+          "48": "LARGE POLISHED STEEL",
+          "49": "LARGE POLISHED TIN",
+          "50": "MEDIUM ANODIZED BRASS",
+          "51": "MEDIUM ANODIZED COPPER",
+          "52": "MEDIUM ANODIZED NICKEL",
+          "53": "MEDIUM ANODIZED STEEL",
+          "54": "MEDIUM ANODIZED TIN",
+          "55": "MEDIUM BRUSHED BRASS",
+          "56": "MEDIUM BRUSHED COPPER",
+          "57": "MEDIUM BRUSHED NICKEL",
+          "58": "MEDIUM BRUSHED STEEL",
+          "59": "MEDIUM BRUSHED TIN",
+          "60": "MEDIUM BURNISHED BRASS",
+          "61": "MEDIUM BURNISHED COPPER",
+          "62": "MEDIUM BURNISHED NICKEL",
+          "63": "MEDIUM BURNISHED STEEL",
+          "64": "MEDIUM BURNISHED TIN",
+          "65": "MEDIUM PLATED BRASS",
+          "66": "MEDIUM PLATED COPPER",
+          "67": "MEDIUM PLATED NICKEL",
+          "68": "MEDIUM PLATED STEEL",
+          "69": "MEDIUM PLATED TIN",
+          "70": "MEDIUM POLISHED BRASS",
+          "71": "MEDIUM POLISHED COPPER",
+          "72": "MEDIUM POLISHED NICKEL",
+          "73": "MEDIUM POLISHED STEEL",
+          "74": "MEDIUM POLISHED TIN",
+          "75": "PROMO ANODIZED BRASS",
+          "76": "PROMO ANODIZED COPPER",
+          "77": "PROMO ANODIZED NICKEL",
+          "78": "PROMO ANODIZED STEEL",
+          "79": "PROMO ANODIZED TIN",
+          "80": "PROMO BRUSHED BRASS",
+          "81": "PROMO BRUSHED COPPER",
+          "82": "PROMO BRUSHED NICKEL",
+          "83": "PROMO BRUSHED STEEL",
+          "84": "PROMO BRUSHED TIN",
+          "85": "PROMO BURNISHED BRASS",
+          "86": "PROMO BURNISHED COPPER",
+          "87": "PROMO BURNISHED NICKEL",
+          "88": "PROMO BURNISHED STEEL",
+          "89": "PROMO BURNISHED TIN",
+          "90": "PROMO PLATED BRASS",
+          "91": "PROMO PLATED COPPER",
+          "92": "PROMO PLATED NICKEL",
+          "93": "PROMO PLATED STEEL",
+          "94": "PROMO PLATED TIN",
+          "95": "PROMO POLISHED BRASS",
+          "96": "PROMO POLISHED COPPER",
+          "97": "PROMO POLISHED NICKEL",
+          "98": "PROMO POLISHED STEEL",
+          "99": "PROMO POLISHED TIN",
+          "100": "SMALL ANODIZED BRASS",
+          "101": "SMALL ANODIZED COPPER",
+          "102": "SMALL ANODIZED NICKEL",
+          "103": "SMALL ANODIZED STEEL",
+          "104": "SMALL ANODIZED TIN",
+          "105": "SMALL BRUSHED BRASS",
+          "106": "SMALL BRUSHED COPPER",
+          "107": "SMALL BRUSHED NICKEL",
+          "108": "SMALL BRUSHED STEEL",
+          "109": "SMALL BRUSHED TIN",
+          "110": "SMALL BURNISHED BRASS",
+          "111": "SMALL BURNISHED COPPER",
+          "112": "SMALL BURNISHED NICKEL",
+          "113": "SMALL BURNISHED STEEL",
+          "114": "SMALL BURNISHED TIN",
+          "115": "SMALL PLATED BRASS",
+          "116": "SMALL PLATED COPPER",
+          "117": "SMALL PLATED NICKEL",
+          "118": "SMALL PLATED STEEL",
+          "119": "SMALL PLATED TIN",
+          "120": "SMALL POLISHED BRASS",
+          "121": "SMALL POLISHED COPPER",
+          "122": "SMALL POLISHED NICKEL",
+          "123": "SMALL POLISHED STEEL",
+          "124": "SMALL POLISHED TIN",
+          "125": "STANDARD ANODIZED BRASS",
+          "126": "STANDARD ANODIZED COPPER",
+          "127": "STANDARD ANODIZED NICKEL",
+          "128": "STANDARD ANODIZED STEEL",
+          "129": "STANDARD ANODIZED TIN",
+          "130": "STANDARD BRUSHED BRASS",
+          "131": "STANDARD BRUSHED COPPER",
+          "132": "STANDARD BRUSHED NICKEL",
+          "133": "STANDARD BRUSHED STEEL",
+          "134": "STANDARD BRUSHED TIN",
+          "135": "STANDARD BURNISHED BRASS",
+          "136": "STANDARD BURNISHED COPPER",
+          "137": "STANDARD BURNISHED NICKEL",
+          "138": "STANDARD BURNISHED STEEL",
+          "139": "STANDARD BURNISHED TIN",
+          "140": "STANDARD PLATED BRASS",
+          "141": "STANDARD PLATED COPPER",
+          "142": "STANDARD PLATED NICKEL",
+          "143": "STANDARD PLATED STEEL",
+          "144": "STANDARD PLATED TIN",
+          "145": "STANDARD POLISHED BRASS",
+          "146": "STANDARD POLISHED COPPER",
+          "147": "STANDARD POLISHED NICKEL",
+          "148": "STANDARD POLISHED STEEL",
+          "149": "STANDARD POLISHED TIN"
+        }
+      },
+      "p_size": {
+        "kind": "int",
+        "reverse_map": {
+          "0": "1",
+          "1": "2",
+          "2": "3",
+          "3": "4",
+          "4": "5",
+          "5": "6",
+          "6": "7",
+          "7": "8",
+          "8": "9",
+          "9": "10",
+          "10": "11",
+          "11": "12",
+          "12": "13",
+          "13": "14",
+          "14": "15",
+          "15": "16",
+          "16": "17",
+          "17": "18",
+          "18": "19",
+          "19": "20",
+          "20": "21",
+          "21": "22",
+          "22": "23",
+          "23": "24",
+          "24": "25",
+          "25": "26",
+          "26": "27",
+          "27": "28",
+          "28": "29",
+          "29": "30",
+          "30": "31",
+          "31": "32",
+          "32": "33",
+          "33": "34",
+          "34": "35",
+          "35": "36",
+          "36": "37",
+          "37": "38",
+          "38": "39",
+          "39": "40",
+          "40": "41",
+          "41": "42",
+          "42": "43",
+          "43": "44",
+          "44": "45",
+          "45": "46",
+          "46": "47",
+          "47": "48",
+          "48": "49",
+          "49": "50"
+        }
+      },
+      "p_container": {
+        "kind": "dict",
+        "reverse_map": {
+          "0": "JUMBO BAG",
+          "1": "JUMBO BOX",
+          "2": "JUMBO CAN",
+          "3": "JUMBO CASE",
+          "4": "JUMBO DRUM",
+          "5": "JUMBO JAR",
+          "6": "JUMBO PACK",
+          "7": "JUMBO PKG",
+          "8": "LG BAG",
+          "9": "LG BOX",
+          "10": "LG CAN",
+          "11": "LG CASE",
+          "12": "LG DRUM",
+          "13": "LG JAR",
+          "14": "LG PACK",
+          "15": "LG PKG",
+          "16": "MED BAG",
+          "17": "MED BOX",
+          "18": "MED CAN",
+          "19": "MED CASE",
+          "20": "MED DRUM",
+          "21": "MED JAR",
+          "22": "MED PACK",
+          "23": "MED PKG",
+          "24": "SM BAG",
+          "25": "SM BOX",
+          "26": "SM CAN",
+          "27": "SM CASE",
+          "28": "SM DRUM",
+          "29": "SM JAR",
+          "30": "SM PACK",
+          "31": "SM PKG",
+          "32": "WRAP BAG",
+          "33": "WRAP BOX",
+          "34": "WRAP CAN",
+          "35": "WRAP CASE",
+          "36": "WRAP DRUM",
+          "37": "WRAP JAR",
+          "38": "WRAP PACK",
+          "39": "WRAP PKG"
+        }
+      },
+      "p_retailprice": {
+        "kind": "scaled_decimal_2",
+        "scale": 2
+      },
+      "p_comment": {
+        "kind": "dict"
+      }
+    },
+    "supplier": {
+      "s_suppkey": {
+        "kind": "int"
+      },
+      "s_name": {
+        "kind": "prefix_hash_padded_int",
+        "prefix": "Supplier#",
+        "pad": 9,
+        "min": 1,
+        "max": 10000
+      },
+      "s_address": {
+        "kind": "dict"
+      },
+      "s_nationkey": {
+        "kind": "int",
+        "reverse_map": {
+          "0": "0",
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "11": "11",
+          "12": "12",
+          "13": "13",
+          "14": "14",
+          "15": "15",
+          "16": "16",
+          "17": "17",
+          "18": "18",
+          "19": "19",
+          "20": "20",
+          "21": "21",
+          "22": "22",
+          "23": "23",
+          "24": "24"
+        }
+      },
+      "s_phone": {
+        "kind": "dict"
+      },
+      "s_acctbal": {
+        "kind": "scaled_decimal_2",
+        "scale": 2
+      },
+      "s_comment": {
+        "kind": "dict"
+      }
+    },
+    "partsupp": {
+      "ps_partkey": {
+        "kind": "int"
+      },
+      "ps_suppkey": {
+        "kind": "int"
+      },
+      "ps_availqty": {
+        "kind": "int"
+      },
+      "ps_supplycost": {
+        "kind": "scaled_decimal_2",
+        "scale": 2
+      },
+      "ps_comment": {
+        "kind": "dict"
+      }
+    },
+    "customer": {
+      "c_custkey": {
+        "kind": "int"
+      },
+      "c_name": {
+        "kind": "prefix_hash_padded_int",
+        "prefix": "Customer#",
+        "pad": 9,
+        "min": 1,
+        "max": 150000
+      },
+      "c_address": {
+        "kind": "dict"
+      },
+      "c_nationkey": {
+        "kind": "int",
+        "reverse_map": {
+          "0": "0",
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10",
+          "11": "11",
+          "12": "12",
+          "13": "13",
+          "14": "14",
+          "15": "15",
+          "16": "16",
+          "17": "17",
+          "18": "18",
+          "19": "19",
+          "20": "20",
+          "21": "21",
+          "22": "22",
+          "23": "23",
+          "24": "24"
+        }
+      },
+      "c_phone": {
+        "kind": "dict"
+      },
+      "c_acctbal": {
+        "kind": "scaled_decimal_2",
+        "scale": 2
+      },
+      "c_mktsegment": {
+        "kind": "dict",
+        "reverse_map": {
+          "0": "AUTOMOBILE",
+          "1": "BUILDING",
+          "2": "FURNITURE",
+          "3": "HOUSEHOLD",
+          "4": "MACHINERY"
+        }
+      },
+      "c_comment": {
+        "kind": "dict"
+      }
+    },
+    "orders": {
+      "o_orderkey": {
+        "kind": "int"
+      },
+      "o_custkey": {
+        "kind": "int"
+      },
+      "o_orderstatus": {
+        "kind": "char_code",
+        "reverse_map": {
+          "0": "F",
+          "1": "O",
+          "2": "P"
+        }
+      },
+      "o_totalprice": {
+        "kind": "scaled_decimal_2",
+        "scale": 2
+      },
+      "o_orderdate": {
+        "kind": "date"
+      },
+      "o_orderpriority": {
+        "kind": "dict",
+        "reverse_map": {
+          "0": "1-URGENT",
+          "1": "2-HIGH",
+          "2": "3-MEDIUM",
+          "3": "4-NOT SPECIFIED",
+          "4": "5-LOW"
+        }
+      },
+      "o_clerk": {
+        "kind": "prefix_hash_padded_int",
+        "prefix": "Clerk#",
+        "pad": 9,
+        "min": 1,
+        "max": 1000
+      },
+      "o_shippriority": {
+        "kind": "int",
+        "reverse_map": {
+          "0": "0"
+        }
+      },
+      "o_comment": {
+        "kind": "dict"
+      }
+    },
+    "lineitem": {
+      "l_orderkey": {
+        "kind": "int"
+      },
+      "l_partkey": {
+        "kind": "int"
+      },
+      "l_suppkey": {
+        "kind": "int"
+      },
+      "l_linenumber": {
+        "kind": "int"
+      },
+      "l_quantity": {
+        "kind": "float_decimal"
+      },
+      "l_extendedprice": {
+        "kind": "float_decimal"
+      },
+      "l_discount": {
+        "kind": "float_decimal"
+      },
+      "l_tax": {
+        "kind": "float_decimal"
+      },
+      "l_returnflag": {
+        "kind": "char_code",
+        "reverse_map": {
+          "0": "A",
+          "1": "N",
+          "2": "R"
+        }
+      },
+      "l_linestatus": {
+        "kind": "char_code",
+        "reverse_map": {
+          "0": "F",
+          "1": "O"
+        }
+      },
+      "l_shipdate": {
+        "kind": "date"
+      },
+      "l_commitdate": {
+        "kind": "date"
+      },
+      "l_receiptdate": {
+        "kind": "date"
+      },
+      "l_shipinstruct": {
+        "kind": "dict",
+        "reverse_map": {
+          "0": "COLLECT COD",
+          "1": "DELIVER IN PERSON",
+          "2": "NONE",
+          "3": "TAKE BACK RETURN"
+        }
+      },
+      "l_shipmode": {
+        "kind": "dict",
+        "reverse_map": {
+          "0": "AIR",
+          "1": "FOB",
+          "2": "MAIL",
+          "3": "RAIL",
+          "4": "REG AIR",
+          "5": "SHIP",
+          "6": "TRUCK"
+        }
+      },
+      "l_comment": {
+        "kind": "dict"
+      }
+    }
+  }
+}

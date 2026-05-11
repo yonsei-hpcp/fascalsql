@@ -1,0 +1,530 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "query": "ssb_q11",
+      "family": "ssb",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/ssb/ssb_q11.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "ssb_q12",
+      "family": "ssb",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/ssb/ssb_q12.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "ssb_q13",
+      "family": "ssb",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/ssb/ssb_q13.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "ssb_q21",
+      "family": "ssb",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/ssb/ssb_q21.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "ssb_q22",
+      "family": "ssb",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/ssb/ssb_q22.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "ssb_q23",
+      "family": "ssb",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/ssb/ssb_q23.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "ssb_q31",
+      "family": "ssb",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/ssb/ssb_q31.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "ssb_q32",
+      "family": "ssb",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/ssb/ssb_q32.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "ssb_q33",
+      "family": "ssb",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/ssb/ssb_q33.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "ssb_q34",
+      "family": "ssb",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/ssb/ssb_q34.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "ssb_q41",
+      "family": "ssb",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/ssb/ssb_q41.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "ssb_q42",
+      "family": "ssb",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/ssb/ssb_q42.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "ssb_q43",
+      "family": "ssb",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/ssb/ssb_q43.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q1",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q1.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q10",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q10.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q11",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q11.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q12",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q12.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q13",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q13.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q14",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q14.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q15",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q15.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q16",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q16.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q17",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q17.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q18",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q18.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q19",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q19.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q2",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q2.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q20",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q20.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q21",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q21.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q22",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q22.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q3",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q3.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q4",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q4.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q5",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q5.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q6",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q6.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q7",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q7.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q8",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q8.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    },
+    {
+      "query": "tpch_q9",
+      "family": "tpch",
+      "source": "sql",
+      "plan_path": null,
+      "sql_path": "fascalsql/query/sql/tpch/tpch_q9.sql",
+      "pipeline": [
+        "scan",
+        "selection",
+        "join",
+        "aggregation",
+        "materialize"
+      ],
+      "status": "ready"
+    }
+  ]
+}

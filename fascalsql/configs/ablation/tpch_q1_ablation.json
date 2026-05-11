@@ -1,0 +1,273 @@
+{
+  "query_name": "tpch_q1",
+  "columns": [
+    {
+      "table": "lineitem",
+      "column": "l_shipdate"
+    },
+    {
+      "table": "lineitem",
+      "column": "l_extendedprice"
+    },
+    {
+      "table": "lineitem",
+      "column": "l_discount"
+    },
+    {
+      "table": "lineitem",
+      "column": "l_tax"
+    },
+    {
+      "table": "lineitem",
+      "column": "l_quantity"
+    }
+  ],
+  "predicates": [
+    {
+      "id": 0,
+      "description": "lineitem.l_shipdate",
+      "column": "l_shipdate",
+      "table": "lineitem",
+      "selectivity_estimate": 0.3,
+      "default_run_on_cpu": true
+    }
+  ],
+  "odzc_lazy_loads": [
+    {
+      "phase": "predicate",
+      "table": "lineitem",
+      "column": "l_shipdate"
+    },
+    {
+      "phase": "fact_group_by",
+      "table": "lineitem",
+      "column": "l_returnflag_enc"
+    },
+    {
+      "phase": "fact_group_by",
+      "table": "lineitem",
+      "column": "l_linestatus_enc"
+    },
+    {
+      "phase": "aggregation_only",
+      "table": "lineitem",
+      "column": "l_extendedprice"
+    },
+    {
+      "phase": "aggregation_only",
+      "table": "lineitem",
+      "column": "l_discount"
+    },
+    {
+      "phase": "aggregation_only",
+      "table": "lineitem",
+      "column": "l_tax"
+    },
+    {
+      "phase": "aggregation_only",
+      "table": "lineitem",
+      "column": "l_quantity"
+    }
+  ],
+  "cqo": {
+    "predicates": [
+      {
+        "id": 0,
+        "table": "lineitem",
+        "column": "l_shipdate",
+        "selectivity_estimate": 0.3,
+        "default_run_on_cpu": true
+      }
+    ],
+    "join_bloom_filters": []
+  },
+  "aggregates": [
+    {
+      "type": "SUM",
+      "semantic_type": "SUM",
+      "column": "l_quantity",
+      "alias": "sum_qty"
+    },
+    {
+      "type": "SUM",
+      "semantic_type": "SUM",
+      "column": "l_extendedprice",
+      "alias": "sum_base_price"
+    },
+    {
+      "type": "SUM",
+      "semantic_type": "SUM",
+      "column": "(l_extendedprice * (1 - l_discount))",
+      "alias": "sum_disc_price"
+    },
+    {
+      "type": "SUM",
+      "semantic_type": "SUM",
+      "column": "(((l_extendedprice * (1 - l_discount))) * (1 + l_tax))",
+      "alias": "sum_charge"
+    },
+    {
+      "type": "SUM",
+      "semantic_type": "AVG",
+      "column": "l_quantity",
+      "alias": "avg_qty"
+    },
+    {
+      "type": "SUM",
+      "semantic_type": "AVG",
+      "column": "l_extendedprice",
+      "alias": "avg_price"
+    },
+    {
+      "type": "SUM",
+      "semantic_type": "AVG",
+      "column": "l_discount",
+      "alias": "avg_disc"
+    },
+    {
+      "type": "COUNT",
+      "semantic_type": "COUNT",
+      "column": "",
+      "alias": "count_order"
+    }
+  ],
+  "group_by_columns": [
+    {
+      "table": "lineitem",
+      "column": "l_returnflag",
+      "range": 128
+    },
+    {
+      "table": "lineitem",
+      "column": "l_linestatus",
+      "range": 128
+    }
+  ],
+  "output": {
+    "materialize": false,
+    "columns": []
+  },
+  "joins": [],
+  "ablation_mode": "full_combinatorial",
+  "num_combinations": 2,
+  "semijoin_controls": [],
+  "semijoin_offload_enabled": false,
+  "planner_codegen_source": "ir",
+  "generated_output_layout": "compact",
+  "sql_path": "fascalsql/query/sql/tpch/tpch_q1.sql",
+  "runtime_pipelines": [
+    {
+      "pipeline_id": 0,
+      "entry_scan": "lineitem",
+      "node_ids": [
+        1,
+        2,
+        3
+      ],
+      "kinds": [
+        "Scan",
+        "Selection",
+        "Map"
+      ]
+    },
+    {
+      "pipeline_id": 1,
+      "entry_scan": null,
+      "node_ids": [
+        4
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 2,
+      "entry_scan": null,
+      "node_ids": [
+        5
+      ],
+      "kinds": [
+        "Map"
+      ]
+    },
+    {
+      "pipeline_id": 3,
+      "entry_scan": null,
+      "node_ids": [
+        6
+      ],
+      "kinds": [
+        "Aggregation"
+      ]
+    },
+    {
+      "pipeline_id": 4,
+      "entry_scan": null,
+      "node_ids": [
+        7
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 5,
+      "entry_scan": null,
+      "node_ids": [
+        8
+      ],
+      "kinds": [
+        "Sort"
+      ]
+    },
+    {
+      "pipeline_id": 6,
+      "entry_scan": null,
+      "node_ids": [
+        9
+      ],
+      "kinds": [
+        "Materialize"
+      ]
+    }
+  ],
+  "runtime_dependencies": [
+    {
+      "from_pipeline": 0,
+      "to_pipeline": 1,
+      "via_from_op": 3,
+      "via_to_op": 4
+    },
+    {
+      "from_pipeline": 1,
+      "to_pipeline": 2,
+      "via_from_op": 4,
+      "via_to_op": 5
+    },
+    {
+      "from_pipeline": 2,
+      "to_pipeline": 3,
+      "via_from_op": 5,
+      "via_to_op": 6
+    },
+    {
+      "from_pipeline": 3,
+      "to_pipeline": 4,
+      "via_from_op": 6,
+      "via_to_op": 7
+    },
+    {
+      "from_pipeline": 4,
+      "to_pipeline": 5,
+      "via_from_op": 7,
+      "via_to_op": 8
+    },
+    {
+      "from_pipeline": 5,
+      "to_pipeline": 6,
+      "via_from_op": 8,
+      "via_to_op": 9
+    }
+  ],
+  "join_build_probe_edges": []
+}

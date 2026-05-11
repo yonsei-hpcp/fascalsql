@@ -1,0 +1,285 @@
+{
+  "query_name": "tpch_q15",
+  "columns": [
+    {
+      "table": "supplier",
+      "column": "s_suppkey"
+    },
+    {
+      "table": "supplier",
+      "column": "s_name"
+    },
+    {
+      "table": "supplier",
+      "column": "s_address"
+    },
+    {
+      "table": "supplier",
+      "column": "s_phone"
+    },
+    {
+      "table": "max_revenue",
+      "column": "total_revenue"
+    },
+    {
+      "table": "revenue",
+      "column": "sum_revenue"
+    }
+  ],
+  "predicates": [],
+  "odzc_lazy_loads": [
+    {
+      "phase": "join_fk",
+      "table": "supplier",
+      "column": "s_suppkey"
+    },
+    {
+      "phase": "aggregation_only",
+      "table": "supplier",
+      "column": "s_name"
+    },
+    {
+      "phase": "aggregation_only",
+      "table": "supplier",
+      "column": "s_address"
+    },
+    {
+      "phase": "aggregation_only",
+      "table": "supplier",
+      "column": "s_phone"
+    }
+  ],
+  "cqo": {
+    "predicates": [],
+    "join_bloom_filters": [
+      {
+        "join_index": 0,
+        "left_table": "supplier",
+        "right_table": "revenue",
+        "false_positive_rate": 0.05
+      },
+      {
+        "join_index": 1,
+        "left_table": "revenue",
+        "right_table": "max_revenue",
+        "false_positive_rate": 0.05
+      }
+    ]
+  },
+  "aggregates": [],
+  "group_by_columns": [],
+  "output": {
+    "materialize": true,
+    "columns": [
+      {
+        "table": "supplier",
+        "column": "s_suppkey"
+      },
+      {
+        "table": "supplier",
+        "column": "s_name"
+      },
+      {
+        "table": "supplier",
+        "column": "s_address"
+      },
+      {
+        "table": "supplier",
+        "column": "s_phone"
+      },
+      {
+        "table": "max_revenue",
+        "column": "total_revenue"
+      }
+    ]
+  },
+  "joins": [
+    {
+      "left_table": "supplier",
+      "right_table": "revenue",
+      "left_col": "s_suppkey",
+      "right_col": "l_suppkey",
+      "type": "inner",
+      "strategy": "materialized_stage",
+      "left_base_table": "supplier",
+      "right_base_table": "revenue"
+    },
+    {
+      "left_table": "revenue",
+      "right_table": "max_revenue",
+      "left_col": "sum_revenue",
+      "right_col": "total_revenue",
+      "type": "inner",
+      "strategy": "materialized_stage",
+      "left_base_table": "revenue",
+      "right_base_table": "max_revenue"
+    }
+  ],
+  "ablation_mode": "full_combinatorial",
+  "num_combinations": 1,
+  "semijoin_controls": [],
+  "semijoin_offload_enabled": false,
+  "planner_codegen_source": "ir",
+  "generated_output_layout": "compact",
+  "sql_path": "fascalsql/query/sql/tpch/tpch_q15.sql",
+  "runtime_pipelines": [
+    {
+      "pipeline_id": 0,
+      "entry_scan": "supplier",
+      "node_ids": [
+        1
+      ],
+      "kinds": [
+        "Scan"
+      ]
+    },
+    {
+      "pipeline_id": 1,
+      "entry_scan": null,
+      "node_ids": [
+        2
+      ],
+      "kinds": [
+        "SubQuery"
+      ]
+    },
+    {
+      "pipeline_id": 2,
+      "entry_scan": null,
+      "node_ids": [
+        3
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 3,
+      "entry_scan": null,
+      "node_ids": [
+        4
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 4,
+      "entry_scan": null,
+      "node_ids": [
+        5
+      ],
+      "kinds": [
+        "SubQuery"
+      ]
+    },
+    {
+      "pipeline_id": 5,
+      "entry_scan": null,
+      "node_ids": [
+        6
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 6,
+      "entry_scan": null,
+      "node_ids": [
+        7
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 7,
+      "entry_scan": null,
+      "node_ids": [
+        8
+      ],
+      "kinds": [
+        "Sort"
+      ]
+    },
+    {
+      "pipeline_id": 8,
+      "entry_scan": null,
+      "node_ids": [
+        9
+      ],
+      "kinds": [
+        "Materialize"
+      ]
+    }
+  ],
+  "runtime_dependencies": [
+    {
+      "from_pipeline": 0,
+      "to_pipeline": 2,
+      "via_from_op": 1,
+      "via_to_op": 3
+    },
+    {
+      "from_pipeline": 1,
+      "to_pipeline": 2,
+      "via_from_op": 2,
+      "via_to_op": 3
+    },
+    {
+      "from_pipeline": 2,
+      "to_pipeline": 3,
+      "via_from_op": 3,
+      "via_to_op": 4
+    },
+    {
+      "from_pipeline": 3,
+      "to_pipeline": 5,
+      "via_from_op": 4,
+      "via_to_op": 6
+    },
+    {
+      "from_pipeline": 4,
+      "to_pipeline": 5,
+      "via_from_op": 5,
+      "via_to_op": 6
+    },
+    {
+      "from_pipeline": 5,
+      "to_pipeline": 6,
+      "via_from_op": 6,
+      "via_to_op": 7
+    },
+    {
+      "from_pipeline": 6,
+      "to_pipeline": 7,
+      "via_from_op": 7,
+      "via_to_op": 8
+    },
+    {
+      "from_pipeline": 7,
+      "to_pipeline": 8,
+      "via_from_op": 8,
+      "via_to_op": 9
+    }
+  ],
+  "join_build_probe_edges": [
+    {
+      "join_op_id": 3,
+      "join_type": "Join.INNER",
+      "build_parent_op": 1,
+      "probe_parent_op": 2,
+      "build_pipeline": 0,
+      "probe_pipeline": 1
+    },
+    {
+      "join_op_id": 6,
+      "join_type": "Join.INNER",
+      "build_parent_op": 4,
+      "probe_parent_op": 5,
+      "build_pipeline": 3,
+      "probe_pipeline": 4
+    }
+  ]
+}

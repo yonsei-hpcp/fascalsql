@@ -1,0 +1,201 @@
+{
+  "query": "ssb_q22",
+  "runtime_metadata": {
+    "runtime_pipelines": [
+      {
+        "pipeline_id": 0,
+        "entry_scan": "lineorder",
+        "node_ids": [
+          1
+        ],
+        "kinds": [
+          "Scan"
+        ]
+      },
+      {
+        "pipeline_id": 1,
+        "entry_scan": "date",
+        "node_ids": [
+          2
+        ],
+        "kinds": [
+          "Scan"
+        ]
+      },
+      {
+        "pipeline_id": 2,
+        "entry_scan": "part",
+        "node_ids": [
+          3,
+          4
+        ],
+        "kinds": [
+          "Scan",
+          "Selection"
+        ]
+      },
+      {
+        "pipeline_id": 3,
+        "entry_scan": "supplier",
+        "node_ids": [
+          5,
+          6
+        ],
+        "kinds": [
+          "Scan",
+          "Selection"
+        ]
+      },
+      {
+        "pipeline_id": 4,
+        "entry_scan": null,
+        "node_ids": [
+          7
+        ],
+        "kinds": [
+          "EquiJoin"
+        ]
+      },
+      {
+        "pipeline_id": 5,
+        "entry_scan": null,
+        "node_ids": [
+          8
+        ],
+        "kinds": [
+          "EquiJoin"
+        ]
+      },
+      {
+        "pipeline_id": 6,
+        "entry_scan": null,
+        "node_ids": [
+          9
+        ],
+        "kinds": [
+          "EquiJoin"
+        ]
+      },
+      {
+        "pipeline_id": 7,
+        "entry_scan": null,
+        "node_ids": [
+          10
+        ],
+        "kinds": [
+          "Aggregation"
+        ]
+      },
+      {
+        "pipeline_id": 8,
+        "entry_scan": null,
+        "node_ids": [
+          11
+        ],
+        "kinds": [
+          "Projection"
+        ]
+      },
+      {
+        "pipeline_id": 9,
+        "entry_scan": null,
+        "node_ids": [
+          12
+        ],
+        "kinds": [
+          "Materialize"
+        ]
+      }
+    ],
+    "runtime_dependencies": [
+      {
+        "from_pipeline": 0,
+        "to_pipeline": 4,
+        "via_from_op": 1,
+        "via_to_op": 7
+      },
+      {
+        "from_pipeline": 1,
+        "to_pipeline": 4,
+        "via_from_op": 2,
+        "via_to_op": 7
+      },
+      {
+        "from_pipeline": 2,
+        "to_pipeline": 5,
+        "via_from_op": 4,
+        "via_to_op": 8
+      },
+      {
+        "from_pipeline": 3,
+        "to_pipeline": 6,
+        "via_from_op": 6,
+        "via_to_op": 9
+      },
+      {
+        "from_pipeline": 4,
+        "to_pipeline": 5,
+        "via_from_op": 7,
+        "via_to_op": 8
+      },
+      {
+        "from_pipeline": 5,
+        "to_pipeline": 6,
+        "via_from_op": 8,
+        "via_to_op": 9
+      },
+      {
+        "from_pipeline": 6,
+        "to_pipeline": 7,
+        "via_from_op": 9,
+        "via_to_op": 10
+      },
+      {
+        "from_pipeline": 7,
+        "to_pipeline": 8,
+        "via_from_op": 10,
+        "via_to_op": 11
+      },
+      {
+        "from_pipeline": 8,
+        "to_pipeline": 9,
+        "via_from_op": 11,
+        "via_to_op": 12
+      }
+    ],
+    "join_build_probe_edges": [
+      {
+        "join_op_id": 7,
+        "join_type": "Join.INNER",
+        "build_parent_op": 1,
+        "probe_parent_op": 2,
+        "build_pipeline": 0,
+        "probe_pipeline": 1
+      },
+      {
+        "join_op_id": 8,
+        "join_type": "Join.INNER",
+        "build_parent_op": 4,
+        "probe_parent_op": 7,
+        "build_pipeline": 2,
+        "probe_pipeline": 4
+      },
+      {
+        "join_op_id": 9,
+        "join_type": "Join.INNER",
+        "build_parent_op": 6,
+        "probe_parent_op": 8,
+        "build_pipeline": 3,
+        "probe_pipeline": 5
+      }
+    ]
+  },
+  "pipeline_stages": [
+    "Scan",
+    "Selection",
+    "EquiJoin",
+    "Aggregation",
+    "Projection",
+    "Materialize"
+  ]
+}

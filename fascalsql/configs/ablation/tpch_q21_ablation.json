@@ -1,0 +1,629 @@
+{
+  "query_name": "tpch_q21",
+  "columns": [
+    {
+      "table": "l2",
+      "column": "l_suppkey"
+    },
+    {
+      "table": "l1",
+      "column": "l_suppkey"
+    },
+    {
+      "table": "l3",
+      "column": "l_suppkey"
+    },
+    {
+      "table": "l1",
+      "column": "l_receiptdate"
+    },
+    {
+      "table": "l1",
+      "column": "l_commitdate"
+    },
+    {
+      "table": "l3",
+      "column": "l_receiptdate"
+    },
+    {
+      "table": "l3",
+      "column": "l_commitdate"
+    },
+    {
+      "table": "l1",
+      "column": "l_orderkey"
+    },
+    {
+      "table": "supplier",
+      "column": "s_nationkey"
+    },
+    {
+      "table": "supplier",
+      "column": "s_name"
+    }
+  ],
+  "predicates": [
+    {
+      "id": 0,
+      "description": "orders.o_orderstatus",
+      "column": "o_orderstatus_enc",
+      "table": "orders",
+      "selectivity_estimate": 0.1,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 1,
+      "description": "nation.n_name",
+      "column": "n_name",
+      "table": "nation",
+      "selectivity_estimate": 0.1,
+      "default_run_on_cpu": true
+    }
+  ],
+  "odzc_lazy_loads": [
+    {
+      "phase": "join_fk",
+      "table": "l1",
+      "column": "l_suppkey"
+    },
+    {
+      "phase": "join_fk",
+      "table": "l1",
+      "column": "l_orderkey"
+    },
+    {
+      "phase": "post_join_check",
+      "table": "l1",
+      "column": "l_receiptdate"
+    },
+    {
+      "phase": "post_join_check",
+      "table": "l1",
+      "column": "l_commitdate"
+    }
+  ],
+  "cqo": {
+    "predicates": [
+      {
+        "id": 0,
+        "table": "orders",
+        "column": "o_orderstatus_enc",
+        "selectivity_estimate": 0.1,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 1,
+        "table": "nation",
+        "column": "n_name",
+        "selectivity_estimate": 0.1,
+        "default_run_on_cpu": true
+      }
+    ],
+    "join_bloom_filters": [
+      {
+        "join_index": 0,
+        "left_table": "l1",
+        "right_table": "supplier",
+        "false_positive_rate": 0.05
+      },
+      {
+        "join_index": 1,
+        "left_table": "l1",
+        "right_table": "orders",
+        "false_positive_rate": 0.05
+      },
+      {
+        "join_index": 2,
+        "left_table": "supplier",
+        "right_table": "nation",
+        "false_positive_rate": 0.05
+      },
+      {
+        "join_index": 3,
+        "left_table": "l1",
+        "right_table": "l2",
+        "false_positive_rate": 0.05
+      },
+      {
+        "join_index": 4,
+        "left_table": "l1",
+        "right_table": "l3",
+        "false_positive_rate": 0.05
+      }
+    ]
+  },
+  "aggregates": [
+    {
+      "type": "COUNT",
+      "semantic_type": "COUNT",
+      "column": "",
+      "alias": "numwait"
+    }
+  ],
+  "group_by_columns": [
+    {
+      "table": "supplier",
+      "column": "s_name",
+      "range": 10001
+    }
+  ],
+  "output": {
+    "materialize": false,
+    "columns": []
+  },
+  "joins": [
+    {
+      "left_table": "l1",
+      "right_table": "supplier",
+      "left_col": "l_suppkey",
+      "right_col": "s_suppkey",
+      "type": "inner",
+      "strategy": "pk_fk_hash",
+      "left_base_table": "lineitem",
+      "right_base_table": "supplier"
+    },
+    {
+      "left_table": "l1",
+      "right_table": "orders",
+      "left_col": "l_orderkey",
+      "right_col": "o_orderkey",
+      "type": "inner",
+      "strategy": "pk_fk_hash",
+      "left_base_table": "lineitem",
+      "right_base_table": "orders"
+    },
+    {
+      "left_table": "supplier",
+      "right_table": "nation",
+      "left_col": "s_nationkey",
+      "right_col": "n_nationkey",
+      "type": "inner",
+      "strategy": "pk_fk_hash",
+      "left_base_table": "supplier",
+      "right_base_table": "nation"
+    },
+    {
+      "left_table": "l1",
+      "right_table": "l2",
+      "left_col": "l_orderkey",
+      "right_col": "l_orderkey",
+      "type": "semijoin",
+      "strategy": "semi_exists",
+      "left_base_table": "lineitem",
+      "right_base_table": "lineitem"
+    },
+    {
+      "left_table": "l1",
+      "right_table": "l3",
+      "left_col": "l_orderkey",
+      "right_col": "l_orderkey",
+      "type": "antijoin",
+      "strategy": "anti_exists",
+      "left_base_table": "lineitem",
+      "right_base_table": "lineitem"
+    }
+  ],
+  "ablation_mode": "full_combinatorial",
+  "num_combinations": 4,
+  "semijoin_controls": [],
+  "semijoin_offload_enabled": false,
+  "planner_codegen_source": "ir",
+  "generated_output_layout": "compact",
+  "sql_path": "fascalsql/query/sql/tpch/tpch_q21.sql",
+  "runtime_pipelines": [
+    {
+      "pipeline_id": 0,
+      "entry_scan": "supplier",
+      "node_ids": [
+        1
+      ],
+      "kinds": [
+        "Scan"
+      ]
+    },
+    {
+      "pipeline_id": 1,
+      "entry_scan": "lineitem",
+      "node_ids": [
+        2,
+        3
+      ],
+      "kinds": [
+        "Scan",
+        "Selection"
+      ]
+    },
+    {
+      "pipeline_id": 2,
+      "entry_scan": null,
+      "node_ids": [
+        4
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 3,
+      "entry_scan": null,
+      "node_ids": [
+        5
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 4,
+      "entry_scan": null,
+      "node_ids": [
+        6
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 5,
+      "entry_scan": "orders",
+      "node_ids": [
+        7,
+        8
+      ],
+      "kinds": [
+        "Scan",
+        "Selection"
+      ]
+    },
+    {
+      "pipeline_id": 6,
+      "entry_scan": null,
+      "node_ids": [
+        9
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 7,
+      "entry_scan": null,
+      "node_ids": [
+        10
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 8,
+      "entry_scan": null,
+      "node_ids": [
+        11
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 9,
+      "entry_scan": "nation",
+      "node_ids": [
+        12,
+        13
+      ],
+      "kinds": [
+        "Scan",
+        "Selection"
+      ]
+    },
+    {
+      "pipeline_id": 10,
+      "entry_scan": null,
+      "node_ids": [
+        14
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 11,
+      "entry_scan": null,
+      "node_ids": [
+        15
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 12,
+      "entry_scan": null,
+      "node_ids": [
+        16
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 13,
+      "entry_scan": "lineitem",
+      "node_ids": [
+        17
+      ],
+      "kinds": [
+        "Scan"
+      ]
+    },
+    {
+      "pipeline_id": 14,
+      "entry_scan": null,
+      "node_ids": [
+        18
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 15,
+      "entry_scan": "lineitem",
+      "node_ids": [
+        19,
+        20
+      ],
+      "kinds": [
+        "Scan",
+        "Selection"
+      ]
+    },
+    {
+      "pipeline_id": 16,
+      "entry_scan": null,
+      "node_ids": [
+        21
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 17,
+      "entry_scan": null,
+      "node_ids": [
+        22
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 18,
+      "entry_scan": null,
+      "node_ids": [
+        23
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 19,
+      "entry_scan": null,
+      "node_ids": [
+        24
+      ],
+      "kinds": [
+        "Aggregation"
+      ]
+    },
+    {
+      "pipeline_id": 20,
+      "entry_scan": null,
+      "node_ids": [
+        25
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 21,
+      "entry_scan": null,
+      "node_ids": [
+        26
+      ],
+      "kinds": [
+        "Sort"
+      ]
+    },
+    {
+      "pipeline_id": 22,
+      "entry_scan": null,
+      "node_ids": [
+        27
+      ],
+      "kinds": [
+        "Materialize"
+      ]
+    }
+  ],
+  "runtime_dependencies": [
+    {
+      "from_pipeline": 0,
+      "to_pipeline": 3,
+      "via_from_op": 1,
+      "via_to_op": 5
+    },
+    {
+      "from_pipeline": 1,
+      "to_pipeline": 2,
+      "via_from_op": 3,
+      "via_to_op": 4
+    },
+    {
+      "from_pipeline": 2,
+      "to_pipeline": 3,
+      "via_from_op": 4,
+      "via_to_op": 5
+    },
+    {
+      "from_pipeline": 3,
+      "to_pipeline": 4,
+      "via_from_op": 5,
+      "via_to_op": 6
+    },
+    {
+      "from_pipeline": 4,
+      "to_pipeline": 7,
+      "via_from_op": 6,
+      "via_to_op": 10
+    },
+    {
+      "from_pipeline": 5,
+      "to_pipeline": 6,
+      "via_from_op": 8,
+      "via_to_op": 9
+    },
+    {
+      "from_pipeline": 6,
+      "to_pipeline": 7,
+      "via_from_op": 9,
+      "via_to_op": 10
+    },
+    {
+      "from_pipeline": 7,
+      "to_pipeline": 8,
+      "via_from_op": 10,
+      "via_to_op": 11
+    },
+    {
+      "from_pipeline": 8,
+      "to_pipeline": 11,
+      "via_from_op": 11,
+      "via_to_op": 15
+    },
+    {
+      "from_pipeline": 9,
+      "to_pipeline": 10,
+      "via_from_op": 13,
+      "via_to_op": 14
+    },
+    {
+      "from_pipeline": 10,
+      "to_pipeline": 11,
+      "via_from_op": 14,
+      "via_to_op": 15
+    },
+    {
+      "from_pipeline": 11,
+      "to_pipeline": 12,
+      "via_from_op": 15,
+      "via_to_op": 16
+    },
+    {
+      "from_pipeline": 12,
+      "to_pipeline": 14,
+      "via_from_op": 16,
+      "via_to_op": 18
+    },
+    {
+      "from_pipeline": 13,
+      "to_pipeline": 14,
+      "via_from_op": 17,
+      "via_to_op": 18
+    },
+    {
+      "from_pipeline": 14,
+      "to_pipeline": 17,
+      "via_from_op": 18,
+      "via_to_op": 22
+    },
+    {
+      "from_pipeline": 15,
+      "to_pipeline": 16,
+      "via_from_op": 20,
+      "via_to_op": 21
+    },
+    {
+      "from_pipeline": 16,
+      "to_pipeline": 17,
+      "via_from_op": 21,
+      "via_to_op": 22
+    },
+    {
+      "from_pipeline": 17,
+      "to_pipeline": 18,
+      "via_from_op": 22,
+      "via_to_op": 23
+    },
+    {
+      "from_pipeline": 18,
+      "to_pipeline": 19,
+      "via_from_op": 23,
+      "via_to_op": 24
+    },
+    {
+      "from_pipeline": 19,
+      "to_pipeline": 20,
+      "via_from_op": 24,
+      "via_to_op": 25
+    },
+    {
+      "from_pipeline": 20,
+      "to_pipeline": 21,
+      "via_from_op": 25,
+      "via_to_op": 26
+    },
+    {
+      "from_pipeline": 21,
+      "to_pipeline": 22,
+      "via_from_op": 26,
+      "via_to_op": 27
+    }
+  ],
+  "join_build_probe_edges": [
+    {
+      "join_op_id": 5,
+      "join_type": "Join.INNER",
+      "build_parent_op": 1,
+      "probe_parent_op": 4,
+      "build_pipeline": 0,
+      "probe_pipeline": 2
+    },
+    {
+      "join_op_id": 10,
+      "join_type": "Join.INNER",
+      "build_parent_op": 6,
+      "probe_parent_op": 9,
+      "build_pipeline": 4,
+      "probe_pipeline": 6
+    },
+    {
+      "join_op_id": 15,
+      "join_type": "Join.INNER",
+      "build_parent_op": 11,
+      "probe_parent_op": 14,
+      "build_pipeline": 8,
+      "probe_pipeline": 10
+    },
+    {
+      "join_op_id": 18,
+      "join_type": "Join.SEMI",
+      "build_parent_op": 16,
+      "probe_parent_op": 17,
+      "build_pipeline": 12,
+      "probe_pipeline": 13
+    },
+    {
+      "join_op_id": 22,
+      "join_type": "Join.ANTI",
+      "build_parent_op": 18,
+      "probe_parent_op": 21,
+      "build_pipeline": 14,
+      "probe_pipeline": 16
+    }
+  ]
+}

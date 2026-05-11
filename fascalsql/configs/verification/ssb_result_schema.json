@@ -1,0 +1,98 @@
+{
+  "_comment": "FaScal SSB output column decode schema. fascal_columns describes column order FaScal outputs; golden_column_order reindexes decoded FaScal columns to match golden (DuckDB SQL SELECT) column order.",
+  "ssb_q11": {
+    "fascal_columns": [{"type": "int"}]
+  },
+  "ssb_q12": {
+    "fascal_columns": [{"type": "int"}]
+  },
+  "ssb_q13": {
+    "fascal_columns": [{"type": "int"}]
+  },
+  "ssb_q21": {
+    "fascal_columns": [
+      {"type": "dict", "dict_file": "d_year_dict.json"},
+      {"type": "dict", "dict_file": "p_brand1_dict.json"},
+      {"type": "int"}
+    ],
+    "golden_column_order": [2, 0, 1]
+  },
+  "ssb_q22": {
+    "fascal_columns": [
+      {"type": "dict", "dict_file": "d_year_dict.json"},
+      {"type": "dict", "dict_file": "p_brand1_dict.json"},
+      {"type": "int"}
+    ],
+    "golden_column_order": [2, 0, 1]
+  },
+  "ssb_q23": {
+    "fascal_columns": [
+      {"type": "dict", "dict_file": "d_year_dict.json"},
+      {"type": "dict", "dict_file": "p_brand1_dict.json"},
+      {"type": "int"}
+    ],
+    "golden_column_order": [2, 0, 1]
+  },
+  "ssb_q31": {
+    "fascal_columns": [
+      {"type": "dict", "dict_file": "c_nation_dict.json"},
+      {"type": "dict", "dict_file": "s_nation_dict.json"},
+      {"type": "dict", "dict_file": "d_year_dict.json"},
+      {"type": "int"}
+    ],
+    "golden_column_order": [0, 1, 2, 3]
+  },
+  "ssb_q32": {
+    "fascal_columns": [
+      {"type": "dict", "dict_file": "c_city_dict.json"},
+      {"type": "dict", "dict_file": "s_city_dict.json"},
+      {"type": "dict", "dict_file": "d_year_dict.json"},
+      {"type": "int"}
+    ],
+    "golden_column_order": [0, 1, 2, 3]
+  },
+  "ssb_q33": {
+    "fascal_columns": [
+      {"type": "dict", "dict_file": "c_city_dict.json"},
+      {"type": "dict", "dict_file": "s_city_dict.json"},
+      {"type": "dict", "dict_file": "d_year_dict.json"},
+      {"type": "int"}
+    ],
+    "golden_column_order": [0, 1, 2, 3]
+  },
+  "ssb_q34": {
+    "fascal_columns": [
+      {"type": "dict", "dict_file": "c_city_dict.json"},
+      {"type": "dict", "dict_file": "s_city_dict.json"},
+      {"type": "dict", "dict_file": "d_year_dict.json"},
+      {"type": "int"}
+    ],
+    "golden_column_order": [0, 1, 2, 3]
+  },
+  "ssb_q41": {
+    "fascal_columns": [
+      {"type": "dict", "dict_file": "d_year_dict.json"},
+      {"type": "dict", "dict_file": "c_nation_dict.json"},
+      {"type": "int"}
+    ],
+    "golden_column_order": [0, 1, 2]
+  },
+  "ssb_q42": {
+    "fascal_columns": [
+      {"type": "dict", "dict_file": "d_year_dict.json"},
+      {"type": "dict", "dict_file": "s_nation_dict.json"},
+      {"type": "dict", "dict_file": "p_category_dict.json"},
+      {"type": "int"}
+    ],
+    "golden_column_order": [0, 1, 2, 3]
+  },
+  "ssb_q43": {
+    "fascal_columns": [
+      {"type": "dict", "dict_file": "d_year_dict.json"},
+      {"type": "dict", "dict_file": "s_city_dict.json"},
+      {"type": "dict", "dict_file": "p_brand1_dict.json"},
+      {"type": "int"}
+    ],
+    "golden_column_order": [0, 1, 2, 3]
+  }
+}

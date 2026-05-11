@@ -1,0 +1,288 @@
+{
+  "query_name": "ssb_q11",
+  "columns": [
+    {
+      "table": "lineorder",
+      "column": "lo_orderdate"
+    },
+    {
+      "table": "lineorder",
+      "column": "lo_quantity"
+    },
+    {
+      "table": "lineorder",
+      "column": "lo_discount"
+    },
+    {
+      "table": "lineorder",
+      "column": "lo_extendedprice"
+    }
+  ],
+  "predicates": [
+    {
+      "id": 0,
+      "description": "lineorder.lo_quantity",
+      "column": "lo_quantity",
+      "table": "lineorder",
+      "selectivity_estimate": 0.3,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 1,
+      "description": "lineorder.lo_discount",
+      "column": "lo_discount",
+      "table": "lineorder",
+      "selectivity_estimate": 0.25,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 2,
+      "description": "lo_orderdate BETWEEN 19930101 AND 19931231 (replaces date dim join)",
+      "column": "lo_orderdate",
+      "table": "lineorder",
+      "selectivity_estimate": 0.85,
+      "default_run_on_cpu": true
+    }
+  ],
+  "odzc_lazy_loads": [
+    {
+      "phase": "predicate",
+      "table": "lineorder",
+      "column": "lo_discount"
+    },
+    {
+      "phase": "predicate",
+      "table": "lineorder",
+      "column": "lo_quantity"
+    },
+    {
+      "phase": "aggregation_only",
+      "table": "lineorder",
+      "column": "lo_orderdate"
+    },
+    {
+      "phase": "aggregation_only",
+      "table": "lineorder",
+      "column": "lo_extendedprice"
+    }
+  ],
+  "cqo": {
+    "predicates": [
+      {
+        "id": 0,
+        "table": "lineorder",
+        "column": "lo_quantity",
+        "selectivity_estimate": 0.3,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 1,
+        "table": "lineorder",
+        "column": "lo_discount",
+        "selectivity_estimate": 0.25,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 2,
+        "table": "lineorder",
+        "column": "lo_orderdate",
+        "selectivity_estimate": 0.85,
+        "default_run_on_cpu": true
+      }
+    ],
+    "join_bloom_filters": []
+  },
+  "aggregates": [
+    {
+      "type": "SUM",
+      "semantic_type": "SUM",
+      "column": "(lo_extendedprice * lo_discount)",
+      "alias": "revenue"
+    }
+  ],
+  "group_by_columns": [],
+  "output": {
+    "materialize": false,
+    "columns": []
+  },
+  "joins": [],
+  "ablation_mode": "full_combinatorial",
+  "num_combinations": 8,
+  "semijoin_controls": [],
+  "semijoin_offload_enabled": false,
+  "planner_codegen_source": "ir",
+  "generated_output_layout": "compact",
+  "sql_path": "fascalsql/query/sql/ssb/ssb_q11.sql",
+  "runtime_pipelines": [
+    {
+      "pipeline_id": 0,
+      "entry_scan": "lineorder",
+      "node_ids": [
+        1,
+        2
+      ],
+      "kinds": [
+        "Scan",
+        "Selection"
+      ]
+    },
+    {
+      "pipeline_id": 1,
+      "entry_scan": null,
+      "node_ids": [
+        3
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 2,
+      "entry_scan": "date",
+      "node_ids": [
+        4,
+        5
+      ],
+      "kinds": [
+        "Scan",
+        "Selection"
+      ]
+    },
+    {
+      "pipeline_id": 3,
+      "entry_scan": null,
+      "node_ids": [
+        6
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 4,
+      "entry_scan": null,
+      "node_ids": [
+        7
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 5,
+      "entry_scan": null,
+      "node_ids": [
+        8
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 6,
+      "entry_scan": null,
+      "node_ids": [
+        9
+      ],
+      "kinds": [
+        "Map"
+      ]
+    },
+    {
+      "pipeline_id": 7,
+      "entry_scan": null,
+      "node_ids": [
+        10
+      ],
+      "kinds": [
+        "Aggregation"
+      ]
+    },
+    {
+      "pipeline_id": 8,
+      "entry_scan": null,
+      "node_ids": [
+        11
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 9,
+      "entry_scan": null,
+      "node_ids": [
+        12
+      ],
+      "kinds": [
+        "Materialize"
+      ]
+    }
+  ],
+  "runtime_dependencies": [
+    {
+      "from_pipeline": 0,
+      "to_pipeline": 1,
+      "via_from_op": 2,
+      "via_to_op": 3
+    },
+    {
+      "from_pipeline": 1,
+      "to_pipeline": 4,
+      "via_from_op": 3,
+      "via_to_op": 7
+    },
+    {
+      "from_pipeline": 2,
+      "to_pipeline": 3,
+      "via_from_op": 5,
+      "via_to_op": 6
+    },
+    {
+      "from_pipeline": 3,
+      "to_pipeline": 4,
+      "via_from_op": 6,
+      "via_to_op": 7
+    },
+    {
+      "from_pipeline": 4,
+      "to_pipeline": 5,
+      "via_from_op": 7,
+      "via_to_op": 8
+    },
+    {
+      "from_pipeline": 5,
+      "to_pipeline": 6,
+      "via_from_op": 8,
+      "via_to_op": 9
+    },
+    {
+      "from_pipeline": 6,
+      "to_pipeline": 7,
+      "via_from_op": 9,
+      "via_to_op": 10
+    },
+    {
+      "from_pipeline": 7,
+      "to_pipeline": 8,
+      "via_from_op": 10,
+      "via_to_op": 11
+    },
+    {
+      "from_pipeline": 8,
+      "to_pipeline": 9,
+      "via_from_op": 11,
+      "via_to_op": 12
+    }
+  ],
+  "join_build_probe_edges": [
+    {
+      "join_op_id": 7,
+      "join_type": "Join.INNER",
+      "build_parent_op": 3,
+      "probe_parent_op": 6,
+      "build_pipeline": 1,
+      "probe_pipeline": 3
+    }
+  ]
+}

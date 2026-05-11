@@ -1,0 +1,569 @@
+{
+  "query_name": "tpch_q16",
+  "columns": [
+    {
+      "table": "partsupp",
+      "column": "ps_partkey"
+    },
+    {
+      "table": "partsupp",
+      "column": "ps_suppkey"
+    }
+  ],
+  "predicates": [
+    {
+      "id": 0,
+      "description": "part.p_brand",
+      "column": "p_brand",
+      "table": "part",
+      "selectivity_estimate": 0.1,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 1,
+      "description": "part.p_type",
+      "column": "p_type",
+      "table": "part",
+      "selectivity_estimate": 0.1,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 2,
+      "description": "part.p_type",
+      "column": "p_type",
+      "table": "part",
+      "selectivity_estimate": 0.1,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 3,
+      "description": "part.p_type",
+      "column": "p_type",
+      "table": "part",
+      "selectivity_estimate": 0.1,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 4,
+      "description": "part.p_type",
+      "column": "p_type",
+      "table": "part",
+      "selectivity_estimate": 0.1,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 5,
+      "description": "part.p_type",
+      "column": "p_type",
+      "table": "part",
+      "selectivity_estimate": 0.1,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 6,
+      "description": "part.p_size",
+      "column": "p_size",
+      "table": "part",
+      "selectivity_estimate": 0.4,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 7,
+      "description": "part.p_size",
+      "column": "p_size",
+      "table": "part",
+      "selectivity_estimate": 0.4,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 8,
+      "description": "part.p_size",
+      "column": "p_size",
+      "table": "part",
+      "selectivity_estimate": 0.4,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 9,
+      "description": "part.p_size",
+      "column": "p_size",
+      "table": "part",
+      "selectivity_estimate": 0.4,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 10,
+      "description": "part.p_size",
+      "column": "p_size",
+      "table": "part",
+      "selectivity_estimate": 0.4,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 11,
+      "description": "part.p_size",
+      "column": "p_size",
+      "table": "part",
+      "selectivity_estimate": 0.4,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 12,
+      "description": "part.p_size",
+      "column": "p_size",
+      "table": "part",
+      "selectivity_estimate": 0.4,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 13,
+      "description": "part.p_size",
+      "column": "p_size",
+      "table": "part",
+      "selectivity_estimate": 0.4,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 14,
+      "description": "__correlated_sq_1.s_comment",
+      "column": "s_comment",
+      "table": "__correlated_sq_1",
+      "selectivity_estimate": 0.4,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 15,
+      "description": "__correlated_sq_1.s_comment",
+      "column": "s_comment",
+      "table": "__correlated_sq_1",
+      "selectivity_estimate": 0.4,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 16,
+      "description": "__correlated_sq_1.s_comment",
+      "column": "s_comment",
+      "table": "__correlated_sq_1",
+      "selectivity_estimate": 0.4,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 17,
+      "description": "__correlated_sq_1.s_comment",
+      "column": "s_comment",
+      "table": "__correlated_sq_1",
+      "selectivity_estimate": 0.4,
+      "default_run_on_cpu": true
+    }
+  ],
+  "odzc_lazy_loads": [
+    {
+      "phase": "join_fk",
+      "table": "partsupp",
+      "column": "ps_partkey"
+    },
+    {
+      "phase": "join_fk",
+      "table": "partsupp",
+      "column": "ps_suppkey"
+    }
+  ],
+  "cqo": {
+    "predicates": [
+      {
+        "id": 0,
+        "table": "part",
+        "column": "p_brand",
+        "selectivity_estimate": 0.1,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 1,
+        "table": "part",
+        "column": "p_type",
+        "selectivity_estimate": 0.1,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 2,
+        "table": "part",
+        "column": "p_type",
+        "selectivity_estimate": 0.1,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 3,
+        "table": "part",
+        "column": "p_type",
+        "selectivity_estimate": 0.1,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 4,
+        "table": "part",
+        "column": "p_type",
+        "selectivity_estimate": 0.1,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 5,
+        "table": "part",
+        "column": "p_type",
+        "selectivity_estimate": 0.1,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 6,
+        "table": "part",
+        "column": "p_size",
+        "selectivity_estimate": 0.4,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 7,
+        "table": "part",
+        "column": "p_size",
+        "selectivity_estimate": 0.4,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 8,
+        "table": "part",
+        "column": "p_size",
+        "selectivity_estimate": 0.4,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 9,
+        "table": "part",
+        "column": "p_size",
+        "selectivity_estimate": 0.4,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 10,
+        "table": "part",
+        "column": "p_size",
+        "selectivity_estimate": 0.4,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 11,
+        "table": "part",
+        "column": "p_size",
+        "selectivity_estimate": 0.4,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 12,
+        "table": "part",
+        "column": "p_size",
+        "selectivity_estimate": 0.4,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 13,
+        "table": "part",
+        "column": "p_size",
+        "selectivity_estimate": 0.4,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 14,
+        "table": "__correlated_sq_1",
+        "column": "s_comment",
+        "selectivity_estimate": 0.4,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 15,
+        "table": "__correlated_sq_1",
+        "column": "s_comment",
+        "selectivity_estimate": 0.4,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 16,
+        "table": "__correlated_sq_1",
+        "column": "s_comment",
+        "selectivity_estimate": 0.4,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 17,
+        "table": "__correlated_sq_1",
+        "column": "s_comment",
+        "selectivity_estimate": 0.4,
+        "default_run_on_cpu": true
+      }
+    ],
+    "join_bloom_filters": [
+      {
+        "join_index": 0,
+        "left_table": "partsupp",
+        "right_table": "part",
+        "false_positive_rate": 0.05
+      },
+      {
+        "join_index": 1,
+        "left_table": "partsupp",
+        "right_table": "__correlated_sq_1",
+        "false_positive_rate": 0.05
+      }
+    ]
+  },
+  "aggregates": [
+    {
+      "type": "COUNT_DISTINCT",
+      "semantic_type": "COUNT_DISTINCT",
+      "column": "ps_suppkey",
+      "alias": "supplier_cnt"
+    }
+  ],
+  "group_by_columns": [
+    {
+      "table": "part",
+      "column": "p_brand",
+      "range": 25
+    },
+    {
+      "table": "part",
+      "column": "p_type",
+      "range": 150
+    },
+    {
+      "table": "part",
+      "column": "p_size",
+      "range": 50
+    }
+  ],
+  "output": {
+    "materialize": false,
+    "columns": []
+  },
+  "joins": [
+    {
+      "left_table": "partsupp",
+      "right_table": "part",
+      "left_col": "ps_partkey",
+      "right_col": "p_partkey",
+      "type": "inner",
+      "strategy": "pk_fk_hash",
+      "left_base_table": "partsupp",
+      "right_base_table": "part"
+    },
+    {
+      "left_table": "partsupp",
+      "right_table": "__correlated_sq_1",
+      "left_col": "ps_suppkey",
+      "right_col": "s_suppkey",
+      "type": "antijoin",
+      "strategy": "anti_exists",
+      "left_base_table": "partsupp",
+      "right_base_table": "supplier"
+    }
+  ],
+  "ablation_mode": "full_combinatorial",
+  "num_combinations": 262144,
+  "semijoin_controls": [],
+  "semijoin_offload_enabled": false,
+  "planner_codegen_source": "ir",
+  "generated_output_layout": "compact",
+  "sql_path": "fascalsql/query/sql/tpch/tpch_q16.sql",
+  "runtime_pipelines": [
+    {
+      "pipeline_id": 0,
+      "entry_scan": "partsupp",
+      "node_ids": [
+        1
+      ],
+      "kinds": [
+        "Scan"
+      ]
+    },
+    {
+      "pipeline_id": 1,
+      "entry_scan": "part",
+      "node_ids": [
+        2,
+        3
+      ],
+      "kinds": [
+        "Scan",
+        "Selection"
+      ]
+    },
+    {
+      "pipeline_id": 2,
+      "entry_scan": null,
+      "node_ids": [
+        4
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 3,
+      "entry_scan": null,
+      "node_ids": [
+        5
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 4,
+      "entry_scan": "supplier",
+      "node_ids": [
+        6,
+        7
+      ],
+      "kinds": [
+        "Scan",
+        "Selection"
+      ]
+    },
+    {
+      "pipeline_id": 5,
+      "entry_scan": null,
+      "node_ids": [
+        8
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 6,
+      "entry_scan": null,
+      "node_ids": [
+        9
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 7,
+      "entry_scan": null,
+      "node_ids": [
+        10
+      ],
+      "kinds": [
+        "Aggregation"
+      ]
+    },
+    {
+      "pipeline_id": 8,
+      "entry_scan": null,
+      "node_ids": [
+        12
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 9,
+      "entry_scan": null,
+      "node_ids": [
+        13
+      ],
+      "kinds": [
+        "Sort"
+      ]
+    },
+    {
+      "pipeline_id": 10,
+      "entry_scan": null,
+      "node_ids": [
+        14
+      ],
+      "kinds": [
+        "Materialize"
+      ]
+    }
+  ],
+  "runtime_dependencies": [
+    {
+      "from_pipeline": 0,
+      "to_pipeline": 2,
+      "via_from_op": 1,
+      "via_to_op": 4
+    },
+    {
+      "from_pipeline": 1,
+      "to_pipeline": 2,
+      "via_from_op": 3,
+      "via_to_op": 4
+    },
+    {
+      "from_pipeline": 2,
+      "to_pipeline": 3,
+      "via_from_op": 4,
+      "via_to_op": 5
+    },
+    {
+      "from_pipeline": 3,
+      "to_pipeline": 6,
+      "via_from_op": 5,
+      "via_to_op": 9
+    },
+    {
+      "from_pipeline": 4,
+      "to_pipeline": 5,
+      "via_from_op": 7,
+      "via_to_op": 8
+    },
+    {
+      "from_pipeline": 5,
+      "to_pipeline": 6,
+      "via_from_op": 8,
+      "via_to_op": 9
+    },
+    {
+      "from_pipeline": 6,
+      "to_pipeline": 7,
+      "via_from_op": 9,
+      "via_to_op": 10
+    },
+    {
+      "from_pipeline": 7,
+      "to_pipeline": 8,
+      "via_from_op": 10,
+      "via_to_op": 12
+    },
+    {
+      "from_pipeline": 8,
+      "to_pipeline": 9,
+      "via_from_op": 12,
+      "via_to_op": 13
+    },
+    {
+      "from_pipeline": 9,
+      "to_pipeline": 10,
+      "via_from_op": 13,
+      "via_to_op": 14
+    }
+  ],
+  "join_build_probe_edges": [
+    {
+      "join_op_id": 4,
+      "join_type": "Join.INNER",
+      "build_parent_op": 1,
+      "probe_parent_op": 3,
+      "build_pipeline": 0,
+      "probe_pipeline": 1
+    },
+    {
+      "join_op_id": 9,
+      "join_type": "Join.ANTI",
+      "build_parent_op": 5,
+      "probe_parent_op": 8,
+      "build_pipeline": 3,
+      "probe_pipeline": 5
+    }
+  ]
+}

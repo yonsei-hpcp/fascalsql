@@ -1,0 +1,138 @@
+{
+  "query": "ssb_q12",
+  "runtime_metadata": {
+    "runtime_pipelines": [
+      {
+        "pipeline_id": 0,
+        "entry_scan": "lineorder",
+        "node_ids": [
+          1,
+          2
+        ],
+        "kinds": [
+          "Scan",
+          "Selection"
+        ]
+      },
+      {
+        "pipeline_id": 1,
+        "entry_scan": "date",
+        "node_ids": [
+          3,
+          4
+        ],
+        "kinds": [
+          "Scan",
+          "Selection"
+        ]
+      },
+      {
+        "pipeline_id": 2,
+        "entry_scan": null,
+        "node_ids": [
+          5
+        ],
+        "kinds": [
+          "EquiJoin"
+        ]
+      },
+      {
+        "pipeline_id": 3,
+        "entry_scan": null,
+        "node_ids": [
+          6
+        ],
+        "kinds": [
+          "Map"
+        ]
+      },
+      {
+        "pipeline_id": 4,
+        "entry_scan": null,
+        "node_ids": [
+          7
+        ],
+        "kinds": [
+          "Aggregation"
+        ]
+      },
+      {
+        "pipeline_id": 5,
+        "entry_scan": null,
+        "node_ids": [
+          8
+        ],
+        "kinds": [
+          "Projection"
+        ]
+      },
+      {
+        "pipeline_id": 6,
+        "entry_scan": null,
+        "node_ids": [
+          9
+        ],
+        "kinds": [
+          "Materialize"
+        ]
+      }
+    ],
+    "runtime_dependencies": [
+      {
+        "from_pipeline": 0,
+        "to_pipeline": 2,
+        "via_from_op": 2,
+        "via_to_op": 5
+      },
+      {
+        "from_pipeline": 1,
+        "to_pipeline": 2,
+        "via_from_op": 4,
+        "via_to_op": 5
+      },
+      {
+        "from_pipeline": 2,
+        "to_pipeline": 3,
+        "via_from_op": 5,
+        "via_to_op": 6
+      },
+      {
+        "from_pipeline": 3,
+        "to_pipeline": 4,
+        "via_from_op": 6,
+        "via_to_op": 7
+      },
+      {
+        "from_pipeline": 4,
+        "to_pipeline": 5,
+        "via_from_op": 7,
+        "via_to_op": 8
+      },
+      {
+        "from_pipeline": 5,
+        "to_pipeline": 6,
+        "via_from_op": 8,
+        "via_to_op": 9
+      }
+    ],
+    "join_build_probe_edges": [
+      {
+        "join_op_id": 5,
+        "join_type": "Join.INNER",
+        "build_parent_op": 2,
+        "probe_parent_op": 4,
+        "build_pipeline": 0,
+        "probe_pipeline": 1
+      }
+    ]
+  },
+  "pipeline_stages": [
+    "Scan",
+    "Selection",
+    "Map",
+    "EquiJoin",
+    "Aggregation",
+    "Projection",
+    "Materialize"
+  ]
+}

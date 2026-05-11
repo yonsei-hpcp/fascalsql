@@ -1,0 +1,819 @@
+{
+  "query_name": "tpch_q8",
+  "columns": [
+    {
+      "table": "orders",
+      "column": "o_orderdate"
+    },
+    {
+      "table": "n2",
+      "column": "n_name"
+    },
+    {
+      "table": "lineitem",
+      "column": "l_partkey"
+    },
+    {
+      "table": "lineitem",
+      "column": "l_suppkey"
+    },
+    {
+      "table": "lineitem",
+      "column": "l_orderkey"
+    },
+    {
+      "table": "lineitem",
+      "column": "l_extendedprice"
+    },
+    {
+      "table": "lineitem",
+      "column": "l_discount"
+    },
+    {
+      "table": "orders",
+      "column": "o_custkey"
+    },
+    {
+      "table": "customer",
+      "column": "c_nationkey"
+    },
+    {
+      "table": "supplier",
+      "column": "s_nationkey"
+    },
+    {
+      "table": "n1",
+      "column": "n_regionkey"
+    }
+  ],
+  "predicates": [
+    {
+      "id": 0,
+      "description": "part.p_type",
+      "column": "p_type",
+      "table": "part",
+      "selectivity_estimate": 0.1,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 1,
+      "description": "orders.o_orderdate",
+      "column": "o_orderdate",
+      "table": "orders",
+      "selectivity_estimate": 0.25,
+      "default_run_on_cpu": true
+    },
+    {
+      "id": 2,
+      "description": "region.r_name",
+      "column": "r_name",
+      "table": "region",
+      "selectivity_estimate": 0.1,
+      "default_run_on_cpu": true
+    }
+  ],
+  "odzc_lazy_loads": [
+    {
+      "phase": "join_fk",
+      "table": "lineitem",
+      "column": "l_partkey"
+    },
+    {
+      "phase": "join_fk",
+      "table": "lineitem",
+      "column": "l_suppkey"
+    },
+    {
+      "phase": "join_fk",
+      "table": "lineitem",
+      "column": "l_orderkey"
+    },
+    {
+      "phase": "aggregation_only",
+      "table": "lineitem",
+      "column": "l_extendedprice"
+    },
+    {
+      "phase": "aggregation_only",
+      "table": "lineitem",
+      "column": "l_discount"
+    }
+  ],
+  "cqo": {
+    "predicates": [
+      {
+        "id": 0,
+        "table": "part",
+        "column": "p_type",
+        "selectivity_estimate": 0.1,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 1,
+        "table": "orders",
+        "column": "o_orderdate",
+        "selectivity_estimate": 0.25,
+        "default_run_on_cpu": true
+      },
+      {
+        "id": 2,
+        "table": "region",
+        "column": "r_name",
+        "selectivity_estimate": 0.1,
+        "default_run_on_cpu": true
+      }
+    ],
+    "join_bloom_filters": [
+      {
+        "join_index": 0,
+        "left_table": "lineitem",
+        "right_table": "part",
+        "false_positive_rate": 0.05
+      },
+      {
+        "join_index": 1,
+        "left_table": "lineitem",
+        "right_table": "supplier",
+        "false_positive_rate": 0.05
+      },
+      {
+        "join_index": 2,
+        "left_table": "lineitem",
+        "right_table": "orders",
+        "false_positive_rate": 0.05
+      },
+      {
+        "join_index": 3,
+        "left_table": "orders",
+        "right_table": "customer",
+        "false_positive_rate": 0.05
+      },
+      {
+        "join_index": 4,
+        "left_table": "customer",
+        "right_table": "n1",
+        "false_positive_rate": 0.05
+      },
+      {
+        "join_index": 5,
+        "left_table": "supplier",
+        "right_table": "n2",
+        "false_positive_rate": 0.05
+      },
+      {
+        "join_index": 6,
+        "left_table": "n1",
+        "right_table": "region",
+        "false_positive_rate": 0.05
+      }
+    ]
+  },
+  "aggregates": [
+    {
+      "type": "SUM",
+      "semantic_type": "SUM",
+      "column": "(((n2.n_name == 2)) ? (((l_extendedprice * (1 - l_discount)))) : (0))",
+      "alias": "brazil_volume"
+    },
+    {
+      "type": "SUM",
+      "semantic_type": "SUM",
+      "column": "(l_extendedprice * (1 - l_discount))",
+      "alias": "total_volume"
+    }
+  ],
+  "group_by_columns": [
+    {
+      "table": "lineitem",
+      "column": "o_year",
+      "range": 7
+    }
+  ],
+  "output": {
+    "materialize": false,
+    "columns": []
+  },
+  "joins": [
+    {
+      "left_table": "lineitem",
+      "right_table": "part",
+      "left_col": "l_partkey",
+      "right_col": "p_partkey",
+      "type": "inner",
+      "strategy": "pk_fk_hash",
+      "left_base_table": "lineitem",
+      "right_base_table": "part"
+    },
+    {
+      "left_table": "lineitem",
+      "right_table": "supplier",
+      "left_col": "l_suppkey",
+      "right_col": "s_suppkey",
+      "type": "inner",
+      "strategy": "pk_fk_hash",
+      "left_base_table": "lineitem",
+      "right_base_table": "supplier"
+    },
+    {
+      "left_table": "lineitem",
+      "right_table": "orders",
+      "left_col": "l_orderkey",
+      "right_col": "o_orderkey",
+      "type": "inner",
+      "strategy": "pk_fk_hash",
+      "left_base_table": "lineitem",
+      "right_base_table": "orders"
+    },
+    {
+      "left_table": "orders",
+      "right_table": "customer",
+      "left_col": "o_custkey",
+      "right_col": "c_custkey",
+      "type": "inner",
+      "strategy": "pk_fk_hash",
+      "left_base_table": "orders",
+      "right_base_table": "customer"
+    },
+    {
+      "left_table": "customer",
+      "right_table": "n1",
+      "left_col": "c_nationkey",
+      "right_col": "n_nationkey",
+      "type": "inner",
+      "strategy": "pk_fk_hash",
+      "left_base_table": "customer",
+      "right_base_table": "nation"
+    },
+    {
+      "left_table": "supplier",
+      "right_table": "n2",
+      "left_col": "s_nationkey",
+      "right_col": "n_nationkey",
+      "type": "inner",
+      "strategy": "pk_fk_hash",
+      "left_base_table": "supplier",
+      "right_base_table": "nation"
+    },
+    {
+      "left_table": "n1",
+      "right_table": "region",
+      "left_col": "n_regionkey",
+      "right_col": "r_regionkey",
+      "type": "inner",
+      "strategy": "pk_fk_hash",
+      "left_base_table": "nation",
+      "right_base_table": "region"
+    }
+  ],
+  "ablation_mode": "full_combinatorial",
+  "num_combinations": 8,
+  "semijoin_controls": [],
+  "semijoin_offload_enabled": false,
+  "planner_codegen_source": "ir",
+  "generated_output_layout": "compact",
+  "sql_path": "fascalsql/query/sql/tpch/tpch_q8.sql",
+  "runtime_pipelines": [
+    {
+      "pipeline_id": 0,
+      "entry_scan": "part",
+      "node_ids": [
+        1,
+        2
+      ],
+      "kinds": [
+        "Scan",
+        "Selection"
+      ]
+    },
+    {
+      "pipeline_id": 1,
+      "entry_scan": null,
+      "node_ids": [
+        3
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 2,
+      "entry_scan": "lineitem",
+      "node_ids": [
+        4
+      ],
+      "kinds": [
+        "Scan"
+      ]
+    },
+    {
+      "pipeline_id": 3,
+      "entry_scan": null,
+      "node_ids": [
+        5
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 4,
+      "entry_scan": null,
+      "node_ids": [
+        6
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 5,
+      "entry_scan": "supplier",
+      "node_ids": [
+        7
+      ],
+      "kinds": [
+        "Scan"
+      ]
+    },
+    {
+      "pipeline_id": 6,
+      "entry_scan": null,
+      "node_ids": [
+        8
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 7,
+      "entry_scan": null,
+      "node_ids": [
+        9
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 8,
+      "entry_scan": "orders",
+      "node_ids": [
+        10,
+        11
+      ],
+      "kinds": [
+        "Scan",
+        "Selection"
+      ]
+    },
+    {
+      "pipeline_id": 9,
+      "entry_scan": null,
+      "node_ids": [
+        12
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 10,
+      "entry_scan": null,
+      "node_ids": [
+        13
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 11,
+      "entry_scan": "customer",
+      "node_ids": [
+        14
+      ],
+      "kinds": [
+        "Scan"
+      ]
+    },
+    {
+      "pipeline_id": 12,
+      "entry_scan": null,
+      "node_ids": [
+        15
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 13,
+      "entry_scan": null,
+      "node_ids": [
+        16
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 14,
+      "entry_scan": "nation",
+      "node_ids": [
+        17
+      ],
+      "kinds": [
+        "Scan"
+      ]
+    },
+    {
+      "pipeline_id": 15,
+      "entry_scan": null,
+      "node_ids": [
+        18
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 16,
+      "entry_scan": null,
+      "node_ids": [
+        19
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 17,
+      "entry_scan": "nation",
+      "node_ids": [
+        20
+      ],
+      "kinds": [
+        "Scan"
+      ]
+    },
+    {
+      "pipeline_id": 18,
+      "entry_scan": null,
+      "node_ids": [
+        21
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 19,
+      "entry_scan": null,
+      "node_ids": [
+        22
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 20,
+      "entry_scan": "region",
+      "node_ids": [
+        23,
+        24
+      ],
+      "kinds": [
+        "Scan",
+        "Selection"
+      ]
+    },
+    {
+      "pipeline_id": 21,
+      "entry_scan": null,
+      "node_ids": [
+        25
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 22,
+      "entry_scan": null,
+      "node_ids": [
+        26
+      ],
+      "kinds": [
+        "EquiJoin"
+      ]
+    },
+    {
+      "pipeline_id": 23,
+      "entry_scan": null,
+      "node_ids": [
+        27
+      ],
+      "kinds": [
+        "Map"
+      ]
+    },
+    {
+      "pipeline_id": 24,
+      "entry_scan": null,
+      "node_ids": [
+        28
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 25,
+      "entry_scan": null,
+      "node_ids": [
+        29,
+        30
+      ],
+      "kinds": [
+        "Map",
+        "Map"
+      ]
+    },
+    {
+      "pipeline_id": 26,
+      "entry_scan": null,
+      "node_ids": [
+        31
+      ],
+      "kinds": [
+        "Aggregation"
+      ]
+    },
+    {
+      "pipeline_id": 27,
+      "entry_scan": null,
+      "node_ids": [
+        32
+      ],
+      "kinds": [
+        "Projection"
+      ]
+    },
+    {
+      "pipeline_id": 28,
+      "entry_scan": null,
+      "node_ids": [
+        33
+      ],
+      "kinds": [
+        "Sort"
+      ]
+    },
+    {
+      "pipeline_id": 29,
+      "entry_scan": null,
+      "node_ids": [
+        34
+      ],
+      "kinds": [
+        "Materialize"
+      ]
+    }
+  ],
+  "runtime_dependencies": [
+    {
+      "from_pipeline": 0,
+      "to_pipeline": 1,
+      "via_from_op": 2,
+      "via_to_op": 3
+    },
+    {
+      "from_pipeline": 1,
+      "to_pipeline": 3,
+      "via_from_op": 3,
+      "via_to_op": 5
+    },
+    {
+      "from_pipeline": 2,
+      "to_pipeline": 3,
+      "via_from_op": 4,
+      "via_to_op": 5
+    },
+    {
+      "from_pipeline": 3,
+      "to_pipeline": 4,
+      "via_from_op": 5,
+      "via_to_op": 6
+    },
+    {
+      "from_pipeline": 4,
+      "to_pipeline": 6,
+      "via_from_op": 6,
+      "via_to_op": 8
+    },
+    {
+      "from_pipeline": 5,
+      "to_pipeline": 6,
+      "via_from_op": 7,
+      "via_to_op": 8
+    },
+    {
+      "from_pipeline": 6,
+      "to_pipeline": 7,
+      "via_from_op": 8,
+      "via_to_op": 9
+    },
+    {
+      "from_pipeline": 7,
+      "to_pipeline": 9,
+      "via_from_op": 9,
+      "via_to_op": 12
+    },
+    {
+      "from_pipeline": 8,
+      "to_pipeline": 9,
+      "via_from_op": 11,
+      "via_to_op": 12
+    },
+    {
+      "from_pipeline": 9,
+      "to_pipeline": 10,
+      "via_from_op": 12,
+      "via_to_op": 13
+    },
+    {
+      "from_pipeline": 10,
+      "to_pipeline": 12,
+      "via_from_op": 13,
+      "via_to_op": 15
+    },
+    {
+      "from_pipeline": 11,
+      "to_pipeline": 12,
+      "via_from_op": 14,
+      "via_to_op": 15
+    },
+    {
+      "from_pipeline": 12,
+      "to_pipeline": 13,
+      "via_from_op": 15,
+      "via_to_op": 16
+    },
+    {
+      "from_pipeline": 13,
+      "to_pipeline": 15,
+      "via_from_op": 16,
+      "via_to_op": 18
+    },
+    {
+      "from_pipeline": 14,
+      "to_pipeline": 15,
+      "via_from_op": 17,
+      "via_to_op": 18
+    },
+    {
+      "from_pipeline": 15,
+      "to_pipeline": 16,
+      "via_from_op": 18,
+      "via_to_op": 19
+    },
+    {
+      "from_pipeline": 16,
+      "to_pipeline": 18,
+      "via_from_op": 19,
+      "via_to_op": 21
+    },
+    {
+      "from_pipeline": 17,
+      "to_pipeline": 18,
+      "via_from_op": 20,
+      "via_to_op": 21
+    },
+    {
+      "from_pipeline": 18,
+      "to_pipeline": 19,
+      "via_from_op": 21,
+      "via_to_op": 22
+    },
+    {
+      "from_pipeline": 19,
+      "to_pipeline": 22,
+      "via_from_op": 22,
+      "via_to_op": 26
+    },
+    {
+      "from_pipeline": 20,
+      "to_pipeline": 21,
+      "via_from_op": 24,
+      "via_to_op": 25
+    },
+    {
+      "from_pipeline": 21,
+      "to_pipeline": 22,
+      "via_from_op": 25,
+      "via_to_op": 26
+    },
+    {
+      "from_pipeline": 22,
+      "to_pipeline": 23,
+      "via_from_op": 26,
+      "via_to_op": 27
+    },
+    {
+      "from_pipeline": 23,
+      "to_pipeline": 24,
+      "via_from_op": 27,
+      "via_to_op": 28
+    },
+    {
+      "from_pipeline": 24,
+      "to_pipeline": 25,
+      "via_from_op": 28,
+      "via_to_op": 29
+    },
+    {
+      "from_pipeline": 25,
+      "to_pipeline": 26,
+      "via_from_op": 30,
+      "via_to_op": 31
+    },
+    {
+      "from_pipeline": 26,
+      "to_pipeline": 27,
+      "via_from_op": 31,
+      "via_to_op": 32
+    },
+    {
+      "from_pipeline": 27,
+      "to_pipeline": 28,
+      "via_from_op": 32,
+      "via_to_op": 33
+    },
+    {
+      "from_pipeline": 28,
+      "to_pipeline": 29,
+      "via_from_op": 33,
+      "via_to_op": 34
+    }
+  ],
+  "join_build_probe_edges": [
+    {
+      "join_op_id": 5,
+      "join_type": "Join.INNER",
+      "build_parent_op": 3,
+      "probe_parent_op": 4,
+      "build_pipeline": 1,
+      "probe_pipeline": 2
+    },
+    {
+      "join_op_id": 8,
+      "join_type": "Join.INNER",
+      "build_parent_op": 6,
+      "probe_parent_op": 7,
+      "build_pipeline": 4,
+      "probe_pipeline": 5
+    },
+    {
+      "join_op_id": 12,
+      "join_type": "Join.INNER",
+      "build_parent_op": 9,
+      "probe_parent_op": 11,
+      "build_pipeline": 7,
+      "probe_pipeline": 8
+    },
+    {
+      "join_op_id": 15,
+      "join_type": "Join.INNER",
+      "build_parent_op": 13,
+      "probe_parent_op": 14,
+      "build_pipeline": 10,
+      "probe_pipeline": 11
+    },
+    {
+      "join_op_id": 18,
+      "join_type": "Join.INNER",
+      "build_parent_op": 16,
+      "probe_parent_op": 17,
+      "build_pipeline": 13,
+      "probe_pipeline": 14
+    },
+    {
+      "join_op_id": 21,
+      "join_type": "Join.INNER",
+      "build_parent_op": 19,
+      "probe_parent_op": 20,
+      "build_pipeline": 16,
+      "probe_pipeline": 17
+    },
+    {
+      "join_op_id": 26,
+      "join_type": "Join.INNER",
+      "build_parent_op": 22,
+      "probe_parent_op": 25,
+      "build_pipeline": 19,
+      "probe_pipeline": 21
+    }
+  ]
+}
