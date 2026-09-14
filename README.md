@@ -1,6 +1,6 @@
 # FaScalSQL [ICDE '26]
 
-This repository contains the source code for [FaScalSQL \[ICDE '26\]](https://yonsei-hpcp.github.io/files/fascalsql-icde2026-preprint.pdf), a fast and scalable GPU-accelerated analytical SQL query engine for out-of-memory tables.
+This repository contains the source code for [FaScalSQL \[ICDE '26\]](https://doi.org/10.1109/ICDE65706.2026.00009), a fast and scalable GPU-accelerated analytical SQL query engine for out-of-memory tables.
 If you find FaScalSQL useful to your research, please cite:
 
 ```bibtex
